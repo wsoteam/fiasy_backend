@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from products.models import Product, Brand
+from products.models import Product, Brand, Category
 
 
 # def set_brand(self, request, queryset):
@@ -10,12 +10,22 @@ from products.models import Product, Brand
 # set_brand.short_description = 'Set Brand'
 
 
+class CategoryAdmin(admin.ModelAdmin):
+    list_select_related = ('parent',)
+    list_display = ('name', 'parent',)
+    list_filter = ('parent',)
+
+    class Meta:
+        model = Category
+
+
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'brand', 'portion')
-    list_filter = ('brand',)
-    search_fields = ('name', 'brand')
+    list_display = ('name', 'brand', 'category', 'portion',)
+    list_filter = ('brand', 'category',)
+    search_fields = ('name', 'brand',)
 #     actions = (set_brand)
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
+admin.site.register(Category, CategoryAdmin)

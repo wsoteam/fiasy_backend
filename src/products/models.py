@@ -1,6 +1,26 @@
 from django.db import models
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=80, null=True, unique=True)
+    parent = models.ForeignKey(
+        'self',
+        blank=True,
+        null=True,
+        related_name='children',
+        on_delete=models.CASCADE
+    )
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        if self.parent:
+            return self.parent.name + '/' + self.name
+        return self.name
+
+
 class Brand(models.Model):
     name = models.CharField(max_length=255, unique=True)
     full_info = models.TextField(blank=True)
@@ -11,8 +31,13 @@ class Brand(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
+    category = models.ForeignKey(
+        Category,
+        null=True,
+        on_delete=models.PROTECT
+    )
     brand = models.ForeignKey(
-        'Brand',
+        Brand,
         on_delete=models.CASCADE,
         blank=True,
         null=True
