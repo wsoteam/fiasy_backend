@@ -8,6 +8,7 @@ class Recipe(models.Model):
     full_info = models.TextField(blank=True)
     image = models.ImageField(upload_to='recipe_image')
     cooking_time = models.IntegerField(blank=True, null=True)
+    cooking_process = models.TextField(blank=True)
     portion = models.FloatField(default=100)
     products = models.ManyToManyField(
         Product,
