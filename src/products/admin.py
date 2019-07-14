@@ -1,29 +1,26 @@
 from django.contrib import admin
+from django.db.models import Q
+from django.contrib.admin.utils import lookup_needs_distinct
+
+import operator
 
 from products.models import Product, Brand, Category
 
 
-# def set_brand(self, request, queryset):
-#     for product in queryset:
-#         product.brand = Brand.objects.get(pk=1)
-#         product.save()
-# set_brand.short_description = 'Set Brand'
-
-
 class CategoryAdmin(admin.ModelAdmin):
     list_select_related = ('parent',)
-    list_display = ('name', 'parent',)
+    list_display = ['name', 'parent']
     list_filter = ('parent',)
+    search_fields = ('name', 'parent__name',)
 
     class Meta:
         model = Category
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'brand', 'category', 'portion',)
+    list_display = ['name', 'brand', 'category', 'portion']
     list_filter = ('brand', 'category',)
-    search_fields = ('name', 'brand',)
-#     actions = (set_brand)
+    search_fields = ('name', 'brand__name',)
 
 
 admin.site.register(Product, ProductAdmin)
