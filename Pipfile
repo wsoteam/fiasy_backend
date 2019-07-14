@@ -11,6 +11,8 @@ djangorestframework = "*"
 pillow = "*"
 pep8 = "*"
 pylint = "*"
+django-filter = "*"
+firebase-admin = "*"
 
 [requires]
 python_version = "3.7"
