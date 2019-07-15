@@ -34,13 +34,15 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         null=True,
+        related_name='products',
         on_delete=models.PROTECT
     )
     brand = models.ForeignKey(
         Brand,
-        on_delete=models.CASCADE,
         blank=True,
-        null=True
+        null=True,
+        related_name='products',
+        on_delete=models.CASCADE
     )
     full_info = models.TextField(blank=True)
     barcode = models.CharField(max_length=20, blank=True, null=True)

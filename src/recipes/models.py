@@ -12,7 +12,8 @@ class Recipe(models.Model):
     portion = models.FloatField(default=100)
     products = models.ManyToManyField(
         Product,
-        blank=True
+        blank=True,
+        related_name='products'
     )
     date = models.DateField(auto_now=True)
     is_moderated = models.BooleanField(default=False)
