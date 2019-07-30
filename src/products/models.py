@@ -65,3 +65,18 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MeasurementUnit(models.Model):
+    name = models.CharField(max_length=255)
+    amount = models.FloatField(default=0)
+    product = models.ForeignKey(
+        Product,
+        blank=True,
+        null=True,
+        related_name="measurement_units",
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.name
