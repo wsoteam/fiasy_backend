@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_filters',
+
     'rest_framework',
+
+    'firebase_admin',
 
     'products',
     'articles',
+    'recipes',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +57,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
 
 ROOT_URLCONF = 'fiasy.urls'
 

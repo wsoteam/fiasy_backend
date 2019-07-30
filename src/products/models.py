@@ -34,13 +34,15 @@ class Product(models.Model):
     category = models.ForeignKey(
         Category,
         null=True,
+        related_name='products',
         on_delete=models.PROTECT
     )
     brand = models.ForeignKey(
         Brand,
-        on_delete=models.CASCADE,
         blank=True,
-        null=True
+        null=True,
+        related_name='products',
+        on_delete=models.CASCADE
     )
     full_info = models.TextField(blank=True)
     barcode = models.CharField(max_length=20, blank=True, null=True)
@@ -60,6 +62,21 @@ class Product(models.Model):
     cellulose = models.FloatField(default=-1.0)
     sodium = models.FloatField(default=-1.0)
     pottasium = models.FloatField(default=-1.0)
+
+    def __str__(self):
+        return self.name
+
+
+class MeasurementUnit(models.Model):
+    name = models.CharField(max_length=255)
+    amount = models.FloatField(default=0)
+    product = models.ForeignKey(
+        Product,
+        blank=True,
+        null=True,
+        related_name="measurement_units",
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         return self.name
