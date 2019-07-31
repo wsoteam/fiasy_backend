@@ -13,4 +13,5 @@ router.register('recipes', RecipeViewset)
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
+    path('api/docs/', include('api.swagger_urls'))
 ]

@@ -13,6 +13,8 @@ pep8 = "*"
 pylint = "*"
 django-filter = "*"
 firebase-admin = "*"
+django-rest-swagger = "*"
+fatsecret = "*"
 
 [requires]
 python_version = "3.7"
