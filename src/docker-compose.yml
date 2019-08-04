@@ -14,11 +14,11 @@ services:
 
   web:
     build: .
-    command: bash -c "sleep 2; python src/manage.py makemigrations todo;
+    command: bash -c "sleep 2; python /fiasy/src/manage.py makemigrations;
              sleep 2;
-             python src/manage.py migrate --noinput && python src/manage.py runserver 0.0.0.0:8000"
+             python /fiasy/src/manage.py migrate --noinput && python /fiasy/src/manage.py runserver 0.0.0.0:8000"
     volumes:
-      - .:/code
+      - .:/fiasy/src/
     ports:
       - "8000:8000"
     depends_on:
