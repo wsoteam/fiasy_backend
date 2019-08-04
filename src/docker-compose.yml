@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  db:
+    image: postgres
+    restart: always
+    env_file:  # <-- we use the previously defined values
+      - config/db/postgres_env
+    volumes:
+      - postgres_volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    command: bash -c "sleep 2; python src/manage.py makemigrations todo;
+             sleep 2;
+             python src/manage.py migrate --noinput && python src/manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+
+volumes:
+  postgres_volume:

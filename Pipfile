@@ -15,6 +15,9 @@ django-filter = "*"
 firebase-admin = "*"
 django-rest-swagger = "*"
 fatsecret = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"
