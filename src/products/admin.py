@@ -35,5 +35,5 @@ admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
 
-admin.site.unregister(User)
-admin.site.unregister(Group)
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
