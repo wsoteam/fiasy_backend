@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from products.models import Product, MeasurementUnit
+from products.models import Product, MeasurementUnit, Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
 
 
 class MeasurementUnitSerializer(serializers.ModelSerializer):
@@ -14,6 +20,8 @@ class MeasurementUnitSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    # category = CategorySerializer(read_only=True)
+
     class Meta:
         model = Product
         fields = '__all__'
