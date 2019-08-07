@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-07 10:33+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\articles\models.py:7 .\products\models.py:7 .\products\models.py:28
+#: .\products\models.py:40 .\products\models.py:131 .\recipes\models.py:9
+msgid "Name"
+msgstr "Имя"
+
+#: .\articles\models.py:10 .\products\models.py:10
+msgid "Parent"
+msgstr "Родитель"
+
+#: .\articles\models.py:18
+msgid "Article Category"
+msgstr "Категория статьи"
+
+#: .\articles\models.py:19
+msgid "Article Categories"
+msgstr "Категории статей"
+
+#: .\articles\models.py:29
+msgid "Title"
+msgstr "Заглавие"
+
+#: .\articles\models.py:30 .\recipes\models.py:11
+msgid "Image"
+msgstr "Картинка"
+
+#: .\articles\models.py:31 .\recipes\models.py:25
+msgid "Date"
+msgstr "Дата"
+
+#: .\articles\models.py:34 .\products\models.py:18 .\products\models.py:43
+msgid "Category"
+msgstr "Категория"
+
+#: .\articles\models.py:41
+msgid "Article"
+msgstr "Статья"
+
+#: .\articles\models.py:42
+msgid "Articles"
+msgstr "Статьи"
+
+#: .\fiasy\settings.py:135
+msgid "English"
+msgstr "Английский"
+
+#: .\fiasy\settings.py:136
+msgid "Russian"
+msgstr "Русский"
+
+#: .\products\models.py:19
+msgid "Categories"
+msgstr "Категории"
+
+#: .\products\models.py:29 .\products\models.py:56 .\recipes\models.py:10
+msgid "Full info"
+msgstr "Полная информация"
+
+#: .\products\models.py:32 .\products\models.py:50
+msgid "Brand"
+msgstr "Бренд"
+
+#: .\products\models.py:33
+msgid "Brands"
+msgstr "Бренды"
+
+#: .\products\models.py:58
+msgid "Barcode"
+msgstr "Штрихкод"
+
+#: .\products\models.py:64
+msgid "Portion"
+msgstr "Порция"
+
+#: .\products\models.py:67
+msgid "Is liquid"
+msgstr "Это жидкость"
+
+#: .\products\models.py:70
+msgid "Kilojoules"
+msgstr "Килоджоули"
+
+#: .\products\models.py:74
+msgid "Calories"
+msgstr "Калории"
+
+#: .\products\models.py:78
+msgid "Proteins"
+msgstr "Белки"
+
+#: .\products\models.py:82
+msgid "Carbohydrates"
+msgstr "Углеводы"
+
+#: .\products\models.py:86
+msgid "Sugar"
+msgstr "Сахар"
+
+#: .\products\models.py:90
+msgid "Fats"
+msgstr "Жиры"
+
+#: .\products\models.py:94
+msgid "Saturated fats"
+msgstr "Насыщенные жиры"
+
+#: .\products\models.py:98
+msgid "Monosaturated fats"
+msgstr "Мононенасыщенные жиры"
+
+#: .\products\models.py:102
+msgid "Polysaturated fats"
+msgstr "Полиненасыщенные жиры"
+
+#: .\products\models.py:106
+msgid "Cholesterol"
+msgstr "Холестерин"
+
+#: .\products\models.py:110
+msgid "Cellulose"
+msgstr "Целлюлоза"
+
+#: .\products\models.py:114
+msgid "Sodium"
+msgstr "Натрий"
+
+#: .\products\models.py:118
+msgid "Pottasium"
+msgstr "Калий"
+
+#: .\products\models.py:123 .\products\models.py:135
+msgid "Product"
+msgstr "Продукт"
+
+#: .\products\models.py:124 .\recipes\models.py:21
+msgid "Products"
+msgstr "Продукты"
+
+#: .\products\models.py:132
+msgid "Amount"
+msgstr "Количество"
+
+#: .\products\models.py:143
+msgid "Measurement unit"
+msgstr "Единица измерения"
+
+#: .\products\models.py:144
+msgid "Measurement units"
+msgstr "Единицы измерения"
+
+#: .\recipes\models.py:13
+msgid "Cooking time"
+msgstr "Время приготовления"
+
+#: .\recipes\models.py:17
+msgid "Cooking process"
+msgstr "Процесс приготовления"
+
+#: .\recipes\models.py:26
+msgid "Is moderated"
+msgstr "Модерировано"
+
+#: .\recipes\models.py:29
+msgid "Recipe"
+msgstr "Рецепт"
+
+#: .\recipes\models.py:30
+msgid "Recipes"
+msgstr "Рецепты"

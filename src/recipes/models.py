@@ -2,21 +2,32 @@ from django.db import models
 
 from products.models import Product
 
+from django.utils.translation import ugettext_lazy as _
+
 
 class Recipe(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    full_info = models.TextField(blank=True)
-    image = models.ImageField(upload_to='recipe_image')
-    cooking_time = models.IntegerField(blank=True, null=True)
-    cooking_process = models.TextField(blank=True)
+    name = models.CharField(_('Name'), max_length=255, unique=True)
+    full_info = models.TextField(_('Full info'), blank=True)
+    image = models.ImageField(_('Image'), upload_to='recipe_image')
+    cooking_time = models.IntegerField(
+        _('Cooking time'),
+        blank=True,
+        null=True
+    )
+    cooking_process = models.TextField(_('Cooking process'), blank=True)
     portion = models.FloatField(default=100)
     products = models.ManyToManyField(
         Product,
+        verbose_name=_("Products"),
         blank=True,
         related_name='products'
     )
-    date = models.DateField(auto_now=True)
-    is_moderated = models.BooleanField(default=False)
+    date = models.DateField(_('Date'), auto_now=True)
+    is_moderated = models.BooleanField(_('Is moderated'), default=False)
+
+    class Meta:
+        verbose_name = _('Recipe')
+        verbose_name_plural = _('Recipes')
 
     def __str__(self):
         return self.name
