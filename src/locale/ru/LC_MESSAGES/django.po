@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-07 10:33+0300\n"
+"POT-Creation-Date: 2019-08-07 10:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,9 +33,13 @@ msgstr "Категория статьи"
 msgid "Article Categories"
 msgstr "Категории статей"
 
-#: .\articles\models.py:29
+#: .\articles\models.py:28
 msgid "Title"
 msgstr "Заглавие"
+
+#: .\articles\models.py:29
+msgid "Body"
+msgstr "Тело"
 
 #: .\articles\models.py:30 .\recipes\models.py:11
 msgid "Image"
