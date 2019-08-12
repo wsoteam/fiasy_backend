@@ -13,5 +13,6 @@ router.register('recipes', RecipeViewset)
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
-    path('api/docs/', include('api.swagger_urls'))
+    path('api/docs/', include('api.swagger_urls')),
+    path('api/v1/auth/', include('rest_framework_social_oauth2.urls')),
 ]
