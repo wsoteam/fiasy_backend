@@ -94,11 +94,11 @@ class Product(models.Model):
         _('Saturated fats'),
         default=-1.0
     )
-    monosaturated_fats = models.FloatField(
+    monounsaturated_fats = models.FloatField(
         _('Monosaturated fats'),
         default=-1.0
     )
-    polysaturated_fats = models.FloatField(
+    polyunsaturated_fats = models.FloatField(
         _('Polysaturated fats'),
         default=-1.0
     )
