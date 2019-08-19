@@ -11,7 +11,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class ProductFilter(InputFilter):
     parameter_name = 'product'
-    title = _('By Brand')
+    title = _('By Products')
 
     def queryset(self, request, queryset):
         term = self.value()

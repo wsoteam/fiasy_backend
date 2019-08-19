@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 08:40+0300\n"
+"POT-Creation-Date: 2019-08-19 11:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,11 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: .\products\admin.py:39
+#: .\products\admin.py:31
+msgid "By Brand"
+msgstr "По Бренду"
+
+#: .\products\admin.py:73
 msgid "Add to "
 msgstr "Добавить к "
 
@@ -173,6 +177,10 @@ msgstr "Единица измерения"
 msgid "Measurement units"
 msgstr "Единицы измерения"
 
+#: .\recipes\admin.py:14
+msgid "By Products"
+msgstr "По Продуктам"
+
 #: .\recipes\models.py:13
 msgid "Cooking time"
 msgstr "Время приготовления"
@@ -192,3 +200,8 @@ msgstr "Рецепт"
 #: .\recipes\models.py:30
 msgid "Recipes"
 msgstr "Рецепты"
+
+
+#: .\templates\admin\input_filter.html:18
+msgid "Remove"
+msgstr "Удалить"
