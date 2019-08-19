@@ -1,9 +1,7 @@
 from django.contrib import admin
-# from django.db.models import Q
-# from django.contrib.admin.utils import lookup_needs_distinct
 from django.contrib.auth.models import User, Group
 
-import operator
+from django.utils.translation import ugettext_lazy as _
 
 from products.models import Product, Brand, Category, MeasurementUnit
 
@@ -30,6 +28,14 @@ class ProductAdmin(admin.ModelAdmin):
         MeasurementUnitInline
     ]
 
+
+for category in Category.objects.all():
+    def change_category(modeladmin, request, queryset, category=category):
+        queryset.update(category=category)
+    admin.site.add_action(
+        change_category,
+        name=_('Add to ') + str(category.name)
+    )
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
