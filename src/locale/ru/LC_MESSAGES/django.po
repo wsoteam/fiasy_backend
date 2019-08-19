@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-12 16:25+0300\n"
+"POT-Creation-Date: 2019-08-19 08:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,13 +61,17 @@ msgstr "Статья"
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\fiasy\settings.py:135
+#: .\fiasy\settings.py:138
 msgid "English"
 msgstr "Английский"
 
-#: .\fiasy\settings.py:136
+#: .\fiasy\settings.py:139
 msgid "Russian"
 msgstr "Русский"
+
+#: .\products\admin.py:39
+msgid "Add to "
+msgstr "Добавить к "
 
 #: .\products\models.py:19
 msgid "Categories"
