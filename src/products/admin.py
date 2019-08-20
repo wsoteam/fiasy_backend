@@ -26,6 +26,22 @@ class InputFilter(admin.SimpleListFilter):
         yield all_choice
 
 
+class MinusWordsFilter(InputFilter):
+    parameter_name = 'product'
+    title = _('Minus Words (contains)')
+
+    def queryset(self, request, queryset):
+        term = self.value()
+        if term is None:
+            return
+        any_name = Q()
+        for bit in term.split():
+            any_name &= (
+                ~Q(name__icontains=bit)
+            )
+        return queryset.filter(any_name)
+
+
 class BrandFilter(InputFilter):
     parameter_name = 'brand'
     title = _('By Brand')
@@ -58,7 +74,10 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ['name', 'brand', 'category', 'portion']
-    list_filter = (BrandFilter, 'category')
+    list_filter = (
+        MinusWordsFilter,
+        BrandFilter,
+        'category')
     search_fields = ('name', 'brand__name',)
     inlines = [
         MeasurementUnitInline
@@ -73,15 +92,7 @@ for category in Category.objects.all():
         name=_('Add to ') + str(category.name)
     )
 
-
-# class TransactionAdmin(admin.ModelAdmin):
-#     list_filters = (
-#         CategoryFilter,
-#     )
-
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
 
-# admin.site.unregister(User)
-# admin.site.unregister(Group)
