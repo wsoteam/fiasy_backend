@@ -1,15 +1,24 @@
 from rest_framework import serializers
 
-from products.models import Product, MeasurementUnit, Category
+from products.models import Product, MeasurementUnit, Category, Brand
 
 
 class CategorySerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Category
         fields = ['id', 'name']
 
 
+class BrandSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Brand
+        fields = ['id', 'name']
+
+
 class MeasurementUnitSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = MeasurementUnit
         fields = [
@@ -20,7 +29,6 @@ class MeasurementUnitSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    # category = CategorySerializer(read_only=True)
 
     class Meta:
         model = Product
@@ -32,4 +40,11 @@ class ProductSerializer(serializers.ModelSerializer):
             instance.measurement_units.all(),
             many=True
         ).data
+        representation['category'] = CategorySerializer(
+            instance.category
+        ).data
+        representation['brand'] = BrandSerializer(
+            instance.brand
+        ).data
+
         return representation
