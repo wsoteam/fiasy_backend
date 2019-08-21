@@ -32,26 +32,31 @@ ALLOWED_HOSTS = ['116.203.193.111', 'localhost']
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
 
+EXTERNAL_APPS = [
     'django_filters',
-
     'rest_framework',
-
     'firebase_admin',
-
     'rest_framework_swagger',
+    'import_export',
+]
 
+LOCAL_APPS = [
     'products',
     'articles',
     'recipes',
+    'revenue'
 ]
+
+INSTALLED_APPS = DEFAULT_APPS + EXTERNAL_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
