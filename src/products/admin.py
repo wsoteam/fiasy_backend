@@ -5,6 +5,9 @@ from django.db.models import Q
 
 from django.utils.translation import ugettext_lazy as _
 
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin, ExportActionMixin
+
 from products.models import Product, Brand, Category, MeasurementUnit
 
 
@@ -72,7 +75,19 @@ class CategoryAdmin(admin.ModelAdmin):
         model = Category
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ProductResource(resources.ModelResource):
+
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'brand__name',
+            'category__name',
+            'portion'
+        )
+
+
+class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
     list_display = ['name', 'brand', 'category', 'portion']
     list_filter = (
         MinusWordsFilter,
@@ -82,6 +97,8 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         MeasurementUnitInline
     ]
+    list_per_page = 200
+    resource_class = ProductResource
 
 
 for category in Category.objects.all():
@@ -95,4 +112,3 @@ for category in Category.objects.all():
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
-
