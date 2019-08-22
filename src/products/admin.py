@@ -6,9 +6,26 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from import_export import resources
-from import_export.admin import ImportExportModelAdmin, ExportActionMixin
+from import_export.admin import ExportActionMixin
 
 from products.models import Product, Brand, Category, MeasurementUnit
+
+
+class CaregoryFilter(admin.SimpleListFilter):
+    title = _('By Category Adding')
+    parameter_name = 'category'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('with_category', _('With category')),
+            ('without_category', _('Without category'))
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'without_category':
+            return queryset.filter(category__isnull=True)
+        elif self.value() == 'with_category':
+            return queryset.filter(category__isnull=False)
 
 
 class InputFilter(admin.SimpleListFilter):
@@ -31,7 +48,7 @@ class InputFilter(admin.SimpleListFilter):
 
 class MinusWordsFilter(InputFilter):
     parameter_name = 'product'
-    title = _('Minus Words (contains)')
+    title = _('Negative Keywords')
 
     def queryset(self, request, queryset):
         term = self.value()
@@ -92,6 +109,7 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = (
         MinusWordsFilter,
         BrandFilter,
+        CaregoryFilter,
         'category')
     search_fields = ('name', 'brand__name',)
     inlines = [
@@ -112,3 +130,4 @@ for category in Category.objects.all():
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
+
