@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-19 11:13+0300\n"
+"POT-Creation-Date: 2019-08-22 09:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,19 +61,35 @@ msgstr "Статья"
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\fiasy\settings.py:138
+#: .\fiasy\settings.py:142
 msgid "English"
 msgstr "Английский"
 
-#: .\fiasy\settings.py:139
+#: .\fiasy\settings.py:143
 msgid "Russian"
 msgstr "Русский"
 
-#: .\products\admin.py:31
+#: .\products\admin.py:15
+msgid "By Category Adding"
+msgstr "По добавлению категорий"
+
+#: .\products\admin.py:20
+msgid "With category"
+msgstr "С категориями"
+
+#: .\products\admin.py:21
+msgid "Without category"
+msgstr "Без категорий"
+
+#: .\products\admin.py:51
+msgid "Negative Keywords"
+msgstr "Минус слова"
+
+#: .\products\admin.py:67
 msgid "By Brand"
 msgstr "По Бренду"
 
-#: .\products\admin.py:73
+#: .\products\admin.py:127
 msgid "Add to "
 msgstr "Добавить к "
 
@@ -201,7 +217,45 @@ msgstr "Рецепт"
 msgid "Recipes"
 msgstr "Рецепты"
 
+#: .\revenue\models.py:9
+msgid "Kind"
+msgstr ""
+
+#: .\revenue\models.py:10
+msgid "Start Time"
+msgstr ""
+
+#: .\revenue\models.py:11
+msgid "Expiry Time"
+msgstr ""
+
+#: .\revenue\models.py:12
+msgid "Auto Renewing"
+msgstr ""
+
+#: .\revenue\models.py:14
+msgid "Price Currency Code"
+msgstr ""
+
+#: .\revenue\models.py:17
+msgid "Price Amount"
+msgstr ""
+
+#: .\revenue\models.py:18
+msgid "Country Code"
+msgstr ""
+
+#: .\revenue\models.py:28 .\revenue\models.py:35
+msgid "Cancel Reason"
+msgstr ""
+
+#: .\revenue\models.py:29
+msgid "Order ID"
+msgstr ""
 
 #: .\templates\admin\input_filter.html:18
 msgid "Remove"
 msgstr "Удалить"
+
+#~ msgid "Category Adding"
+#~ msgstr "Добавлению категорий"
