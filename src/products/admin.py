@@ -111,7 +111,7 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
         BrandFilter,
         CaregoryFilter,
         'category')
-    search_fields = ('name', 'brand__name',)
+    search_fields = ('name',)
     inlines = [
         MeasurementUnitInline
     ]
@@ -124,10 +124,9 @@ for category in Category.objects.all():
         queryset.update(category=category)
     admin.site.add_action(
         change_category,
-        name=_('Add to ') + str(category.name)
+        name=_(str(category.name))
     )
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
-

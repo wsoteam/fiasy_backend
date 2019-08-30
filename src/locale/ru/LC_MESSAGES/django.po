@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-22 09:08+0300\n"
+"POT-Creation-Date: 2019-08-30 08:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,29 +69,25 @@ msgstr "Английский"
 msgid "Russian"
 msgstr "Русский"
 
-#: .\products\admin.py:15
+#: .\products\admin.py:19
 msgid "By Category Adding"
 msgstr "По добавлению категорий"
 
-#: .\products\admin.py:20
+#: .\products\admin.py:24
 msgid "With category"
 msgstr "С категориями"
 
-#: .\products\admin.py:21
+#: .\products\admin.py:25
 msgid "Without category"
 msgstr "Без категорий"
 
-#: .\products\admin.py:51
+#: .\products\admin.py:55
 msgid "Negative Keywords"
 msgstr "Минус слова"
 
-#: .\products\admin.py:67
+#: .\products\admin.py:71
 msgid "By Brand"
 msgstr "По Бренду"
-
-#: .\products\admin.py:127
-msgid "Add to "
-msgstr "Добавить к "
 
 #: .\products\models.py:19
 msgid "Categories"
@@ -256,6 +252,9 @@ msgstr ""
 #: .\templates\admin\input_filter.html:18
 msgid "Remove"
 msgstr "Удалить"
+
+#~ msgid "Add to "
+#~ msgstr "Добавить к "
 
 #~ msgid "Category Adding"
 #~ msgstr "Добавлению категорий"
