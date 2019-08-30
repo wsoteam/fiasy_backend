@@ -12,8 +12,8 @@ from products.models import Product, Brand, Category, MeasurementUnit
 
 
 class CaregoryFilter(admin.SimpleListFilter):
-    title = _('By Category Adding')
     parameter_name = 'category'
+    title = _('By Category Adding')
 
     def lookups(self, request, model_admin):
         return (
@@ -26,24 +26,6 @@ class CaregoryFilter(admin.SimpleListFilter):
             return queryset.filter(category__isnull=True)
         elif self.value() == 'with_category':
             return queryset.filter(category__isnull=False)
-
-
-# class CaregoryProductsFilter(admin.SimpleListFilter):
-#     title = _('By Category')
-#     parameter_name = 'category'
-
-#     def lookups(self, request, model_admin):
-#         categories = set(
-#             [c.name for c in Category.objects.all()]
-#         )
-#         return categories
-
-#     def queryset(self, request, queryset):
-#         # if self.value() == 'without_category':
-#         #     return queryset.filter(category__isnull=True)
-#         # elif self.value() == 'with_category':
-#         #     return queryset.filter(category__isnull=False)
-#         print(queryset)
 
 
 class InputFilter(admin.SimpleListFilter):
@@ -76,6 +58,22 @@ class MinusWordsFilter(InputFilter):
         for bit in term.split():
             any_name &= (
                 ~Q(name__icontains=bit)
+            )
+        return queryset.filter(any_name)
+
+
+class CaregoryProductsFilter(InputFilter):
+    title = _('By Category')
+    parameter_name = 'category name'
+
+    def queryset(self, request, queryset):
+        term = self.value()
+        if term is None:
+            return
+        any_name = Q()
+        for bit in term.split():
+            any_name &= (
+                Q(category__name__icontains=bit)
             )
         return queryset.filter(any_name)
 
@@ -136,8 +134,8 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
     list_filter = (
         MinusWordsFilter,
         BrandFilter,
+        CaregoryProductsFilter,
         CaregoryFilter,
-        # CaregoryProductsFilter,
         'is_liquid',
         'category',
     )
