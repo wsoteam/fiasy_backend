@@ -123,7 +123,16 @@ class ProductResource(resources.ModelResource):
 
 
 class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
-    list_display = ['name', 'brand', 'category', 'portion']
+    list_display = [
+        'name',
+        'brand',
+        'category',
+        'portion',
+        'calories',
+        'proteins',
+        'fats',
+        'carbohydrates'
+    ]
     list_filter = (
         MinusWordsFilter,
         BrandFilter,
