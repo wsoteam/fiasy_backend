@@ -28,6 +28,24 @@ class CaregoryFilter(admin.SimpleListFilter):
             return queryset.filter(category__isnull=False)
 
 
+# class CaregoryProductsFilter(admin.SimpleListFilter):
+#     title = _('By Category')
+#     parameter_name = 'category'
+
+#     def lookups(self, request, model_admin):
+#         categories = set(
+#             [c.name for c in Category.objects.all()]
+#         )
+#         return categories
+
+#     def queryset(self, request, queryset):
+#         # if self.value() == 'without_category':
+#         #     return queryset.filter(category__isnull=True)
+#         # elif self.value() == 'with_category':
+#         #     return queryset.filter(category__isnull=False)
+#         print(queryset)
+
+
 class InputFilter(admin.SimpleListFilter):
     template = 'admin/input_filter.html'
 
@@ -110,10 +128,11 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
         MinusWordsFilter,
         BrandFilter,
         CaregoryFilter,
+        # CaregoryProductsFilter,
         'is_liquid',
         'category',
     )
-    search_fields = ('name',)
+    search_fields = ('name', 'category__name')
     inlines = [
         MeasurementUnitInline
     ]
