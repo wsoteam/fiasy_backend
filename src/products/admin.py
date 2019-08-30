@@ -110,7 +110,9 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
         MinusWordsFilter,
         BrandFilter,
         CaregoryFilter,
-        'category')
+        'is_liquid',
+        'category',
+    )
     search_fields = ('name',)
     inlines = [
         MeasurementUnitInline
