@@ -35,7 +35,8 @@ class CustomSearchFilter(filters.SearchFilter):
                 name__iexact=search_terms).order_by('brand')
             obj_to_exclude = [o.id for o in equal_qs]
             contains_qs = queryset.filter(
-                name__icontains=search_terms).order_by('brand')
+                name__icontains=search_terms).exclude(
+                    id__in=obj_to_exclude).order_by('category')
             queryset = list(equal_qs) + list(contains_qs)
         return queryset
 
