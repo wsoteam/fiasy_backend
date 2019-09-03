@@ -63,8 +63,8 @@ class MinusWordsFilter(InputFilter):
 
 
 class CaregoryProductsFilter(InputFilter):
-    title = _('By Category')
-    parameter_name = 'category name'
+    title = _('By Category Parent')
+    parameter_name = 'category parent'
 
     def queryset(self, request, queryset):
         term = self.value()
@@ -74,7 +74,6 @@ class CaregoryProductsFilter(InputFilter):
         any_name &= (
            Q(category__parent__name=term)
         )
-        print(queryset.filter(any_name))
         return queryset.filter(any_name)
 
 

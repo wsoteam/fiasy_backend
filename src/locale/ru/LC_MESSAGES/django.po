@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-30 16:23+0300\n"
+"POT-Creation-Date: 2019-09-03 09:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,10 +86,10 @@ msgid "Negative Keywords"
 msgstr "Минус слова"
 
 #: .\products\admin.py:66
-msgid "By Category"
-msgstr "По Категории"
+msgid "By Category Parent"
+msgstr "По родительской категории"
 
-#: .\products\admin.py:83
+#: .\products\admin.py:82
 msgid "By Brand"
 msgstr "По Бренду"
 
@@ -257,8 +257,4 @@ msgstr ""
 msgid "Remove"
 msgstr "Удалить"
 
-#~ msgid "Add to "
-#~ msgstr "Добавить к "
 
-#~ msgid "Category Adding"
-#~ msgstr "Добавлению категорий"
