@@ -71,10 +71,10 @@ class CaregoryProductsFilter(InputFilter):
         if term is None:
             return
         any_name = Q()
-        for bit in term.split():
-            any_name &= (
-                Q(category__name__icontains=bit)
-            )
+        any_name &= (
+           Q(category__parent__name=term)
+        )
+        print(queryset.filter(any_name))
         return queryset.filter(any_name)
 
 
