@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['116.203.193.111', 'localhost']
 # Application definition
 
 DEFAULT_APPS = [
+    'admin_numeric_filter',  # should be before django 'django.contrib.admin'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

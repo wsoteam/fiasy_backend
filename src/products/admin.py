@@ -8,6 +8,9 @@ from django.utils.translation import ugettext_lazy as _
 from import_export import resources
 from import_export.admin import ExportActionMixin
 
+from admin_numeric_filter.admin import NumericFilterModelAdmin,\
+    RangeNumericFilter
+
 from products.models import Product, Brand, Category, MeasurementUnit
 
 
@@ -93,6 +96,10 @@ class BrandFilter(InputFilter):
         return queryset.filter(any_name)
 
 
+class CustomRangeNumericFilter(RangeNumericFilter):
+    template = 'admin/admin_numeric_filter/filter_numeric_range.html'
+
+
 class MeasurementUnitInline(admin.TabularInline):
     model = MeasurementUnit
 
@@ -119,7 +126,7 @@ class ProductResource(resources.ModelResource):
         )
 
 
-class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
+class ProductAdmin(ExportActionMixin, NumericFilterModelAdmin, admin.ModelAdmin):
     list_display = [
         'name',
         'brand',
@@ -134,6 +141,10 @@ class ProductAdmin(ExportActionMixin, admin.ModelAdmin):
         MinusWordsFilter,
         BrandFilter,
         CaregoryProductsFilter,
+        ('calories', CustomRangeNumericFilter),
+        ('proteins', CustomRangeNumericFilter),
+        ('fats', CustomRangeNumericFilter),
+        ('carbohydrates', CustomRangeNumericFilter),
         CaregoryFilter,
         'is_liquid',
         'category',

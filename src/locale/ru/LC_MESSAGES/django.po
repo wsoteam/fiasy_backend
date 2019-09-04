@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-03 09:24+0300\n"
+"POT-Creation-Date: 2019-09-04 15:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,35 +61,35 @@ msgstr "Статья"
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\fiasy\settings.py:142
+#: .\fiasy\settings.py:143
 msgid "English"
 msgstr "Английский"
 
-#: .\fiasy\settings.py:143
+#: .\fiasy\settings.py:144
 msgid "Russian"
 msgstr "Русский"
 
-#: .\products\admin.py:16
+#: .\products\admin.py:19
 msgid "By Category Adding"
 msgstr "По добавлению категорий"
 
-#: .\products\admin.py:20
+#: .\products\admin.py:23
 msgid "With category"
 msgstr "С категориями"
 
-#: .\products\admin.py:21
+#: .\products\admin.py:24
 msgid "Without category"
 msgstr "Без категорий"
 
-#: .\products\admin.py:51
+#: .\products\admin.py:54
 msgid "Negative Keywords"
 msgstr "Минус слова"
 
-#: .\products\admin.py:66
+#: .\products\admin.py:69
 msgid "By Category Parent"
 msgstr "По родительской категории"
 
-#: .\products\admin.py:82
+#: .\products\admin.py:85
 msgid "By Brand"
 msgstr "По Бренду"
 
@@ -253,8 +253,23 @@ msgstr ""
 msgid "Order ID"
 msgstr ""
 
+#: .\templates\admin\admin_numeric_filter\filter_numeric_range.html:11
+#: .\templates\admin\admin_numeric_filter\filter_numeric_single.html:11
+#: .\templates\admin\admin_numeric_filter\filter_numeric_slider.html:11
+#, python-format
+msgid "By %(filter_title)s"
+msgstr "%(filter_title)s"
+
+#: .\templates\admin\admin_numeric_filter\filter_numeric_range.html:17
+#: .\templates\admin\admin_numeric_filter\filter_numeric_single.html:15
+#: .\templates\admin\admin_numeric_filter\filter_numeric_slider.html:26
+msgid "Apply"
+msgstr "Применить"
+
+#: .\templates\admin\admin_numeric_filter\filter_numeric_slider.html:30
+msgid "No enough data."
+msgstr "Не достаточно данных"
+
 #: .\templates\admin\input_filter.html:18
 msgid "Remove"
 msgstr "Удалить"
-
-
