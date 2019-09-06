@@ -55,4 +55,4 @@ class ProductViewset(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = (CustomSearchFilter,)
     search_fields = ['name']
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
