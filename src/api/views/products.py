@@ -3,6 +3,7 @@ from rest_framework import filters
 
 from products.models import Product
 from api.serializers.products import ProductSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class CustomSearchFilter(filters.SearchFilter):
@@ -34,10 +35,18 @@ class CustomSearchFilter(filters.SearchFilter):
             equal_qs = queryset.filter(
                 name__iexact=search_terms).order_by('brand')
             obj_to_exclude = [o.id for o in equal_qs]
-            contains_qs = queryset.filter(
-                name__icontains=search_terms).exclude(
-                    id__in=obj_to_exclude).order_by('category')
-            queryset = list(equal_qs) + list(contains_qs)
+            starts_with_qs = queryset.filter(
+                name__startswith=search_terms).exclude(
+                    id__in=obj_to_exclude).order_by('brand')
+            # obj_to_exclude = [
+            #     o.id for o in list(equal_qs) + list(starts_with_qs)
+            # ]
+            # contains_qs = queryset.filter(
+            #     name__icontains=search_terms).exclude(
+            #         id__in=obj_to_exclude).order_by('category')
+                # + list(contains_qs)
+            # queryset = queryset + list(contains_qs)
+            queryset = list(equal_qs) + list(starts_with_qs)
         return queryset
 
 
@@ -46,3 +55,4 @@ class ProductViewset(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = (CustomSearchFilter,)
     search_fields = ['name']
+    permission_classes = (IsAuthenticated,)

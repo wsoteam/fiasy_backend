@@ -6,6 +6,9 @@ from api.views.products import ProductViewset
 from api.views.articles import ArticleViewset
 from api.views.recipes import RecipeViewset
 
+from rest_framework_simplejwt import views as jwt_views
+
+
 router = routers.DefaultRouter()
 router.register('products', ProductViewset)
 router.register('articles', ArticleViewset)
@@ -13,5 +16,7 @@ router.register('recipes', RecipeViewset)
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),
-    path('api/docs/', include('api.swagger_urls'))
+    path('api/docs/', include('api.swagger_urls')),
+    path('api/auth/token/', jwt_views.TokenObtainPairView.as_view()),
+    path('api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view()),
 ]
