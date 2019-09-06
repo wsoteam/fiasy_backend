@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from import_export import resources
-from import_export.admin import ExportActionMixin
+from import_export.admin import ImportExportModelAdmin
 
 from admin_numeric_filter.admin import NumericFilterModelAdmin,\
     RangeNumericFilter
@@ -118,15 +118,35 @@ class ProductResource(resources.ModelResource):
 
     class Meta:
         model = Product
+        exclude = ('id',)
+        import_id_fields = ['name']
         fields = (
+            'id',
             'name',
-            'brand__name',
-            'category__name',
-            'portion'
+            'category',
+            'brand',
+            'full_info',
+            'barcode',
+            'portion',
+            'is_liquid',
+            'kilojoules',
+            'calories',
+            'proteins',
+            'carbohydrates',
+            'sugar',
+            'fats',
+            'saturated_fats',
+            'monounsaturated_fats',
+            'polyunsaturated_fats',
+            'cholesterol',
+            'cellulose',
+            'sodium',
+            'pottasium'
         )
 
 
-class ProductAdmin(ExportActionMixin, NumericFilterModelAdmin, admin.ModelAdmin):
+# class ProductAdmin(ExportActionMixin, NumericFilterModelAdmin, admin.ModelAdmin):
+class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelAdmin):
     list_display = [
         'name',
         'brand',
