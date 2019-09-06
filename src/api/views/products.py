@@ -36,7 +36,7 @@ class CustomSearchFilter(filters.SearchFilter):
                 name__iexact=search_terms).order_by('brand')
             obj_to_exclude = [o.id for o in equal_qs]
             starts_with_qs = queryset.filter(
-                name__startswith=search_terms).exclude(
+                name__istartswith=search_terms).exclude(
                     id__in=obj_to_exclude).order_by('brand')
             # obj_to_exclude = [
             #     o.id for o in list(equal_qs) + list(starts_with_qs)
