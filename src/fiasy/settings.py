@@ -54,6 +54,7 @@ LOCAL_APPS = [
     'products',
     'articles',
     'recipes',
+    'users',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + EXTERNAL_APPS + LOCAL_APPS
