@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 15:56+0300\n"
+"POT-Creation-Date: 2019-09-19 09:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr "Заглавие"
 msgid "Body"
 msgstr "Тело"
 
-#: .\articles\models.py:30 .\recipes\models.py:11
+#: .\articles\models.py:30 .\recipes\models.py:11 .\users\models.py:43
 msgid "Image"
 msgstr "Картинка"
 
@@ -61,11 +61,11 @@ msgstr "Статья"
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\fiasy\settings.py:143
+#: .\fiasy\settings.py:147
 msgid "English"
 msgstr "Английский"
 
-#: .\fiasy\settings.py:144
+#: .\fiasy\settings.py:148
 msgid "Russian"
 msgstr "Русский"
 
@@ -125,15 +125,15 @@ msgstr "Это жидкость"
 msgid "Kilojoules"
 msgstr "Килоджоули"
 
-#: .\products\models.py:74
+#: .\products\models.py:74 .\users\models.py:71
 msgid "Calories"
 msgstr "Калории"
 
-#: .\products\models.py:78
+#: .\products\models.py:78 .\users\models.py:72
 msgid "Proteins"
 msgstr "Белки"
 
-#: .\products\models.py:82
+#: .\products\models.py:82 .\users\models.py:69
 msgid "Carbohydrates"
 msgstr "Углеводы"
 
@@ -141,7 +141,7 @@ msgstr "Углеводы"
 msgid "Sugar"
 msgstr "Сахар"
 
-#: .\products\models.py:90
+#: .\products\models.py:90 .\users\models.py:70
 msgid "Fats"
 msgstr "Жиры"
 
@@ -273,3 +273,87 @@ msgstr "Не достаточно данных"
 #: .\templates\admin\input_filter.html:18
 msgid "Remove"
 msgstr "Удалить"
+
+#: .\users\models.py:12
+msgid "Minimal stress"
+msgstr ""
+
+#: .\users\models.py:13
+msgid "Inactive"
+msgstr ""
+
+#: .\users\models.py:14
+msgid "Average stress"
+msgstr ""
+
+#: .\users\models.py:15
+msgid "Daily training"
+msgstr ""
+
+#: .\users\models.py:16
+msgid "Intensive training"
+msgstr ""
+
+#: .\users\models.py:17
+msgid "Daily intensive training"
+msgstr ""
+
+#: .\users\models.py:18
+msgid "Extra hard training"
+msgstr ""
+
+#: .\users\models.py:22
+msgid "Keeping fit"
+msgstr ""
+
+#: .\users\models.py:23
+msgid "Losing weight"
+msgstr ""
+
+#: .\users\models.py:24
+msgid "Muscle gaininig"
+msgstr ""
+
+#: .\users\models.py:25
+msgid "Muscle preservation and fat burning"
+msgstr ""
+
+#: .\users\models.py:29
+msgid "Male"
+msgstr "Мужчина"
+
+#: .\users\models.py:30
+msgid "Female"
+msgstr "Женщина"
+
+#: .\users\models.py:48
+msgid "Gender"
+msgstr "Пол"
+
+#: .\users\models.py:54
+msgid "Activity"
+msgstr "Активность"
+
+#: .\users\models.py:60
+msgid "Goals"
+msgstr "Цели"
+
+#: .\users\models.py:65
+msgid "Age"
+msgstr "Возраст"
+
+#: .\users\models.py:66
+msgid "Height"
+msgstr "Высота"
+
+#: .\users\models.py:67
+msgid "Weight"
+msgstr "Вес"
+
+#: .\users\models.py:68
+msgid "Birth date"
+msgstr "Дата рождения"
+
+#: .\users\models.py:73
+msgid "Water"
+msgstr "Вода"
