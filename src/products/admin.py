@@ -31,6 +31,23 @@ class CaregoryFilter(admin.SimpleListFilter):
             return queryset.filter(category__isnull=False)
 
 
+class BrandAddingFilter(admin.SimpleListFilter):
+    parameter_name = 'brand add'
+    title = _('By Brand Adding')
+
+    def lookups(self, request, model_admin):
+        return (
+            ('with_brand', _('With brand')),
+            ('without_brand', _('Without brand'))
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'without_brand':
+            return queryset.filter(brand__isnull=True)
+        elif self.value() == 'with_brand':
+            return queryset.filter(brand__isnull=False)
+
+
 class InputFilter(admin.SimpleListFilter):
     template = 'admin/input_filter.html'
 
@@ -145,7 +162,16 @@ class ProductResource(resources.ModelResource):
         )
 
 
-# class ProductAdmin(ExportActionMixin, NumericFilterModelAdmin, admin.ModelAdmin):
+def add_actions():
+    for category in Category.objects.all():
+        def change_category(modeladmin, request, queryset, category=category):
+            queryset.update(category=category)
+        admin.site.add_action(
+            change_category,
+            name=_(str(category.name))
+        )
+
+
 class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelAdmin):
     list_display = [
         'name',
@@ -160,6 +186,7 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
     list_filter = (
         MinusWordsFilter,
         BrandFilter,
+        BrandAddingFilter,
         CaregoryProductsFilter,
         ('calories', CustomRangeNumericFilter),
         ('proteins', CustomRangeNumericFilter),
@@ -177,14 +204,22 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
     resource_class = ProductResource
 
 
-for category in Category.objects.all():
-    def change_category(modeladmin, request, queryset, category=category):
-        queryset.update(category=category)
-    admin.site.add_action(
-        change_category,
-        name=_(str(category.name))
-    )
+
+# class AddActionsAdmin(admin.ModelAdmin):
+#     change_list_template = 'admin/add_actions.html'
+
+# for category in Category.objects.all():
+#     def change_category(modeladmin, request, queryset, category=category):
+#         queryset.update(category=category)
+#     admin.site.add_action(
+#         change_category,
+#         name=_(str(category.name))
+#     )
+
+
+
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
+# admin.site.register(AddActionsAdmin)
