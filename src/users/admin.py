@@ -1,13 +1,15 @@
 from django.contrib import admin
 
+
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User, Group
+
 from users.models import UserProfile
 
 
-class UserProfileAdmin(admin.ModelAdmin):
-    search_fields = ('user',)
-    list_select_related = ('user',)
+class UserProfileAdmin(admin.StackedInline):
+    model = UserProfile
     list_display = [
-        'user',
         'image',
         'age',
         'height',
@@ -19,7 +21,12 @@ class UserProfileAdmin(admin.ModelAdmin):
         'water_count'
     ]
 
-    class Meta:
-        model = UserProfile
 
-admin.site.register(UserProfile, UserProfileAdmin)
+class UserAdmin(UserAdmin):
+    inlines = [
+        UserProfileAdmin
+    ]
+
+
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

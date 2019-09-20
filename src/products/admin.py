@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.models import User, Group
 
 from django.db.models import Q
 
@@ -208,13 +207,13 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
 # class AddActionsAdmin(admin.ModelAdmin):
 #     change_list_template = 'admin/add_actions.html'
 
-# for category in Category.objects.all():
-#     def change_category(modeladmin, request, queryset, category=category):
-#         queryset.update(category=category)
-#     admin.site.add_action(
-#         change_category,
-#         name=_(str(category.name))
-#     )
+for category in Category.objects.all():
+    def change_category(modeladmin, request, queryset, category=category):
+        queryset.update(category=category)
+    admin.site.add_action(
+        change_category,
+        name=_(str(category.name))
+    )
 
 
 
