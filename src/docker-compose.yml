@@ -14,7 +14,7 @@ services:
 
   web:
     build: .
-    command: bash -c "sleep 2; python /fiasy/src/manage.py makemigrations;
+    command: bash -c "sleep 2; python /fiasy/src/manage.py makemigrations --merge;
              sleep 2;
              python /fiasy/src/manage.py migrate --noinput && python /fiasy/src/manage.py runserver 0.0.0.0:8000"
     volumes:
