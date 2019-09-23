@@ -27,8 +27,18 @@ class ArticleCategory(models.Model):
 class Article(models.Model):
     title = models.CharField(_('Title'), max_length=200)
     body = models.TextField(_('Body'))
-    image = models.ImageField(_('Image'), upload_to='article_image')
+    image = models.ImageField(
+        _('Image'),
+        upload_to='article_image',
+        blank=True
+    )
     date = models.DateField(_('Date'), auto_now=True)
+    author = models.CharField(
+        _('Author'),
+        max_length=80,
+        null=True,
+        blank=True
+    )
     category = models.ForeignKey(
         ArticleCategory,
         verbose_name=_("Category"),
