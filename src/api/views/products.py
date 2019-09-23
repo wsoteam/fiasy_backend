@@ -54,5 +54,5 @@ class ProductViewset(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = (CustomSearchFilter,)
-    search_fields = ['name']
+    search_fields = ['name', 'brand__name']
     # permission_classes = (IsAuthenticated,)

@@ -46,5 +46,4 @@ class ProductSerializer(serializers.ModelSerializer):
         representation['brand'] = BrandSerializer(
             instance.brand
         ).data
-
         return representation
