@@ -28,4 +28,5 @@ class Command(BaseCommand):
                 **{x: duplicate[x] for x in fields}
             )
             to_delete = to_delete.exclude(id=duplicate["max_id"])
+            print(duplicate)
             to_delete.delete()
