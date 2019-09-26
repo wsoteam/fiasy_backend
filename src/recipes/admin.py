@@ -29,7 +29,6 @@ class RecipeAdmin(admin.ModelAdmin):
     list_display = ['name']
     list_filter = (ProductFilter,)
     search_fields = ('name', 'full_info', 'products__name',)
-
-
+    raw_id_fields = ("products",)
 
 admin.site.register(Recipe, RecipeAdmin)
