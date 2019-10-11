@@ -1,8 +1,10 @@
 from django.contrib import admin
 
-from recipes.models import Recipe
+from recipes.models import Recipe,ProductAmount
 
 from products.admin import InputFilter
+
+from products.models import Product
 
 from django.db.models import Q
 
@@ -25,10 +27,16 @@ class ProductFilter(InputFilter):
         return queryset.filter(any_name)
 
 
+class ProductInlineAdmin(admin.TabularInline):
+    model = ProductAmount
+    extra = 1
+
+
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ['name']
     list_filter = (ProductFilter,)
     search_fields = ('name', 'full_info', 'products__name',)
-    raw_id_fields = ("products",)
+    inlines = [ProductInlineAdmin]
+
 
 admin.site.register(Recipe, RecipeAdmin)

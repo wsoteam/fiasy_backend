@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['116.203.193.111', 'localhost']
 
 DEFAULT_APPS = [
     'admin_numeric_filter',  # should be before django 'django.contrib.admin'
+    'modeltranslation',  # should be before django 'django.contrib.admin'
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +49,8 @@ EXTERNAL_APPS = [
     'firebase_admin',
     'rest_framework_swagger',
     'import_export',
+    'django_elasticsearch_dsl',  # Django ES integration
+    'django_elasticsearch_dsl_drf',  # DRF ES integration
 ]
 
 LOCAL_APPS = [
@@ -67,6 +70,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -77,6 +81,12 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'PAGE_SIZE': 100
+}
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'localhost:9200'
+    },
 }
 
 ROOT_URLCONF = 'fiasy.urls'
@@ -143,12 +153,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
+
 LANGUAGES = (
-    ('en', _('English')),
     ('ru', _('Russian')),
+    ('en', _('English')),
+    ('de', _('German')),
+    ('pt', _('Portuguese')),
+    ('es', _('Spanish')),
 )
 
-LANGUAGE_CODE = 'ru-ru' 'en-us'
+LANGUAGE_CODE = 'ru-ru'  # 'en-us'
 
 TIME_ZONE = 'UTC'
 

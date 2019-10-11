@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from articles.models import Article, ArticleCategory
+from modeltranslation.admin import TranslationAdmin
 
 
 class ArticleCategoryAdmin(admin.ModelAdmin):
@@ -17,6 +18,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title', 'category', 'date']
     search_fields = ('title', 'body')
     list_filter = ('category',)
+
 
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)

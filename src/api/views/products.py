@@ -5,6 +5,35 @@ from products.models import Product
 from api.serializers.products import ProductSerializer
 from rest_framework.permissions import IsAuthenticated
 
+from elasticsearch_dsl import MultiSearch, Search
+
+from django_elasticsearch_dsl_drf.constants import (
+    LOOKUP_FILTER_TERM,
+    LOOKUP_FILTER_RANGE,
+    LOOKUP_FILTER_WILDCARD,
+    LOOKUP_QUERY_IN,
+    LOOKUP_QUERY_GT,
+    LOOKUP_QUERY_GTE,
+    LOOKUP_QUERY_LT,
+    LOOKUP_QUERY_LTE,
+)
+
+from django_elasticsearch_dsl_drf.filter_backends import (
+    FilteringFilterBackend,
+    NestedFilteringFilterBackend,
+    OrderingFilterBackend,
+    DefaultOrderingFilterBackend,
+    SearchFilterBackend,
+    CompoundSearchFilterBackend,
+    SimpleQueryStringSearchFilterBackend,
+    MultiMatchSearchFilterBackend,
+    FunctionalSuggesterFilterBackend,
+)
+
+from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
+
+from products.documents import ProductDocument
+
 
 class CustomSearchFilter(filters.SearchFilter):
 
@@ -50,9 +79,58 @@ class CustomSearchFilter(filters.SearchFilter):
         return queryset
 
 
-class ProductViewset(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
+# class EsSearch(filters.SearchFilter):
+#     search = ProductDocument.search()
+
+#     def filter_queryset(self, request, queryset, view):
+#         queryset = ProductDocument.search()
+#         print(queryset)
+
+
+# class ProductViewset(viewsets.ModelViewSet):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#     filter_backends = (EsSearch,)
+#     search_fields = ['name', 'brand__name']
+#     # permission_classes = (IsAuthenticated,)
+
+class ProductViewset(DocumentViewSet):
+    document = ProductDocument
     serializer_class = ProductSerializer
-    filter_backends = (CustomSearchFilter,)
-    search_fields = ['name', 'brand__name']
-    # permission_classes = (IsAuthenticated,)
+
+    lookup_field = 'name'
+
+    filter_backends = [
+        FilteringFilterBackend,
+        # OrderingFilterBackend,
+        # DefaultOrderingFilterBackend,
+        # SearchFilterBackend,
+        CompoundSearchFilterBackend,
+        # SimpleQueryStringSearchFilterBackend,
+        # MultiMatchSearchFilterBackend,
+        # FunctionalSuggesterFilterBackend
+    ]
+
+    multi_match_search_fields = [
+        'name',
+        'brand'
+    ]
+
+    search_fields = (
+        'name',
+        'brand.name',
+    )
+
+    filter_fields = {
+        'name': 'name',
+        'brand': 'brand.name',
+        'category': 'category.name',
+        # 'default_lookup': LOOKUP_FILTER_TERM,
+    }
+
+    ordering_fields = {
+        'name': 'name',
+        'brand': 'brand',
+    }
+
+    ordering = ('name', 'brand.name')

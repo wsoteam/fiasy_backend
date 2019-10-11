@@ -118,6 +118,22 @@ class CustomRangeNumericFilter(RangeNumericFilter):
 
 class MeasurementUnitInline(admin.TabularInline):
     model = MeasurementUnit
+    classes = ['collapse']
+    fieldsets = (
+        (
+            None,
+            {
+                'fields': (
+                    'name',
+                    'amount',
+                    'name_en',
+                    'name_de',
+                    'name_pt',
+                    'name_es',
+                )
+            }
+        ),
+    )
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -125,6 +141,36 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'parent']
     list_filter = ('parent',)
     search_fields = ('name', 'parent__name',)
+    fieldsets = (
+        (
+            None,
+            {
+                'fields': (
+                    'name',
+                )
+            },
+        ),
+        (
+            _('Name Localization'),
+            {
+                'fields': (
+                    'name_en',
+                    'name_de',
+                    'name_pt',
+                    'name_es',
+                ),
+                'classes': ('collapse', 'closed'),
+            }
+        ),
+        (
+            None,
+            {
+                'fields': (
+                    'parent',
+                )
+            },
+        ),
+    )
 
     class Meta:
         model = Category
@@ -195,25 +241,94 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
         'is_liquid',
         'category',
     )
-    search_fields = ('name', 'category__name')
+    search_fields = ('name_ru', 'category__name')
     inlines = [
         MeasurementUnitInline
     ]
     list_per_page = 200
     resource_class = ProductResource
 
+    fieldsets = (
+        (
+            None,
+            {
+                'fields': (
+                    'name',
+                )
+            },
+        ),
+        (
+            _('Name Localization'),
+            {
+                'fields': (
+                    'name_ru',
+                    'name_en',
+                    'name_de',
+                    'name_pt',
+                    'name_es',
+                ),
+                'classes': ('collapse', 'closed'),
+            }
+        ),
+        (
+            None,
+            {
+                'fields': (
+                    'category',
+                    'brand',
+                    'full_info',
+                )
+            }
+        ),
+        (
+            _('Full Info Localization'),
+            {
+                'fields': (
+                    'full_info_en',
+                    'full_info_de',
+                    'full_info_pt',
+                    'full_info_es',
+                ),
+                'classes': ('collapse', 'closed'),
+            }
+        ),
+        (
+            None,
+            {
+                'fields': (
+                    'barcode',
+                    'portion',
+                    'is_liquid',
+                    'kilojoules',
+                    'calories',
+                    'proteins',
+                    'carbohydrates',
+                    'sugar',
+                    'fats',
+                    'saturated_fats',
+                    'monounsaturated_fats',
+                    'polyunsaturated_fats',
+                    'cholesterol',
+                    'cellulose',
+                    'sodium',
+                    'pottasium'
+                )
+            }
+        ),
+    )
+
 
 
 # class AddActionsAdmin(admin.ModelAdmin):
 #     change_list_template = 'admin/add_actions.html'
 
-for category in Category.objects.all():
-    def change_category(modeladmin, request, queryset, category=category):
-        queryset.update(category=category)
-    admin.site.add_action(
-        change_category,
-        name=_(str(category.name))
-    )
+# for category in Category.objects.all():
+#     def change_category(modeladmin, request, queryset, category=category):
+#         queryset.update(category=category)
+#     admin.site.add_action(
+#         change_category,
+#         name=_(str(category.name))
+#     )
 
 
 

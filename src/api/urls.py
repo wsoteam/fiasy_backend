@@ -11,7 +11,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 
 router = routers.DefaultRouter()
-router.register('products', ProductViewset)
+router.register('products', ProductViewset, base_name='product')
 router.register('articles', ArticleViewset)
 router.register('recipes', RecipeViewset)
 router.register('users', UserViewset)

@@ -20,8 +20,10 @@ class Recipe(models.Model):
         Product,
         verbose_name=_("Products"),
         blank=True,
+        through='ProductAmount',
         related_name='products'
     )
+    premium = models.BooleanField(_('Premium'), default=False)
     date = models.DateField(_('Date'), auto_now=True)
     is_moderated = models.BooleanField(_('Is moderated'), default=False)
 
@@ -76,3 +78,24 @@ class Recipe(models.Model):
             sodium,
             pottasium
         )
+
+
+class ProductAmount(models.Model):
+    product = models.ForeignKey(
+        Product,
+        blank=True,
+        null=True,
+        related_name='amount',
+        on_delete=models.CASCADE
+    )
+    recipe = models.ForeignKey(
+        Recipe,
+        blank=True,
+        null=True,
+        related_name='amount',
+        on_delete=models.CASCADE
+    )
+    amount = models.FloatField(_('Amount'), default=0)
+
+    # class Meta:
+    #     db_table = "recipes_productamount_products"
