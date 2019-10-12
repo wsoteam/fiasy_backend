@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pycodestyle = "*"
 
 [packages]
 django = "*"
@@ -18,6 +19,21 @@ fatsecret = "*"
 dj-database-url = "*"
 psycopg2 = "*"
 gunicorn = "*"
+requests-oauth2 = "*"
+google-api-python-client = "*"
+oauth2client = "*"
+google-auth = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+django-import-export = "*"
+amplitude-python = "*"
+scrypt = "*"
+django-admin-numeric-filter = "*"
+passlib = "*"
+djangorestframework-simplejwt = "*"
+django-elasticsearch-dsl-drf = "*"
+django-elasticsearch-dsl = "*"
+django-modeltranslation = "*"
 
 [requires]
 python_version = "3.7"
