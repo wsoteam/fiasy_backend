@@ -44,9 +44,13 @@ class ProductDocument(Document):
     })
     brand = fields.ObjectField(properties={
         'id': fields.IntegerField(),
-        # 'name': fields.TextField()
-        'name': fields.StringField(analyzer='keyword')
+        'name': fields.StringField(analyzer='keyword'),
     })
+    full_info = fields.TextField()
+    full_info_en = fields.TextField()
+    full_info_de = fields.TextField()
+    full_info_pt = fields.TextField()
+    full_info_es = fields.TextField()
     measurement_units = fields.ObjectField(properties={
         'id': fields.IntegerField(),
         'name': fields.TextField(),
@@ -71,9 +75,7 @@ class ProductDocument(Document):
 
         # The fields of the model indexed in Elasticsearch
         fields = [
-            # 'name',
             'id',
-            'full_info',
             'portion',
             'is_liquid',
             'kilojoules',

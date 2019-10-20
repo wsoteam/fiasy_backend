@@ -6,7 +6,7 @@ from products.documents import ProductDocument
 from products.models import Product, MeasurementUnit, Category, Brand
 
 
-class ProductSerializer(DocumentSerializer):
+class GetProductSerializer(DocumentSerializer):
     class Meta:
         document = ProductDocument
 
@@ -15,9 +15,15 @@ class ProductSerializer(DocumentSerializer):
             'name',
             'name_en',
             'name_de',
+            'name_pt',
+            'name_es',
             'category',
             'brand',
             'full_info',
+            'full_info_en',
+            'full_info_de',
+            'full_info_pt',
+            'full_info_es',
             'measurement_units',
             'portion',
             'is_liquid',
@@ -36,47 +42,48 @@ class ProductSerializer(DocumentSerializer):
             'pottasium',
         )
 
-# class CategorySerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Category
-#         fields = ['id', 'name']
+class CategorySerializer(serializers.ModelSerializer):
 
-
-# class BrandSerializer(serializers.ModelSerializer):
-
-#     class Meta:
-#         model = Brand
-#         fields = ['id', 'name']
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
 
 
-# class MeasurementUnitSerializer(serializers.ModelSerializer):
+class BrandSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = MeasurementUnit
-#         fields = [
-#             'id',
-#             'name',
-#             'amount'
-#         ]
+    class Meta:
+        model = Brand
+        fields = ['id', 'name']
 
 
-# class ProductSerializer(serializers.ModelSerializer):
+class MeasurementUnitSerializer(serializers.ModelSerializer):
 
-#     class Meta:
-#         model = Product
-#         fields = '__all__'
+    class Meta:
+        model = MeasurementUnit
+        fields = [
+            'id',
+            'name',
+            'amount'
+        ]
 
-#     def to_representation(self, instance):
-#         representation = super().to_representation(instance)
-#         representation['measurement_units'] = MeasurementUnitSerializer(
-#             instance.measurement_units.all(),
-#             many=True
-#         ).data
-#         representation['category'] = CategorySerializer(
-#             instance.category
-#         ).data
-#         representation['brand'] = BrandSerializer(
-#             instance.brand
-#         ).data
-#         return representation
+
+class ProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['measurement_units'] = MeasurementUnitSerializer(
+            instance.measurement_units.all(),
+            many=True
+        ).data
+        representation['category'] = CategorySerializer(
+            instance.category
+        ).data
+        representation['brand'] = BrandSerializer(
+            instance.brand
+        ).data
+        return representation

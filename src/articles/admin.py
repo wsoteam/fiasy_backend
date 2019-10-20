@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from articles.models import Article, ArticleCategory
+from articles.models import Article, ArticleCategory, Author, ArticleSeries
 from modeltranslation.admin import TranslationAdmin
 
 
@@ -20,5 +20,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_filter = ('category',)
 
 
+admin.site.register(Author)
+admin.site.register(ArticleSeries)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(ArticleCategory, ArticleCategoryAdmin)

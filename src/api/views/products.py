@@ -1,13 +1,14 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, mixins
 from rest_framework import filters
 
 from products.models import Product
-from api.serializers.products import ProductSerializer
+from api.serializers.products import ProductSerializer, GetProductSerializer
 from rest_framework.permissions import IsAuthenticated
 
 from elasticsearch_dsl import MultiSearch, Search
 
 from django_elasticsearch_dsl_drf.constants import (
+    SUGGESTER_COMPLETION,
     LOOKUP_FILTER_TERM,
     LOOKUP_FILTER_RANGE,
     LOOKUP_FILTER_WILDCARD,
@@ -28,6 +29,7 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     SimpleQueryStringSearchFilterBackend,
     MultiMatchSearchFilterBackend,
     FunctionalSuggesterFilterBackend,
+    SuggesterFilterBackend,
 )
 
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
@@ -67,57 +69,48 @@ class CustomSearchFilter(filters.SearchFilter):
             starts_with_qs = queryset.filter(
                 name__istartswith=search_terms).exclude(
                     id__in=obj_to_exclude).order_by('brand')
-            # obj_to_exclude = [
-            #     o.id for o in list(equal_qs) + list(starts_with_qs)
-            # ]
-            # contains_qs = queryset.filter(
-            #     name__icontains=search_terms).exclude(
-            #         id__in=obj_to_exclude).order_by('category')
-                # + list(contains_qs)
-            # queryset = queryset + list(contains_qs)
             queryset = list(equal_qs) + list(starts_with_qs)
         return queryset
 
 
-# class EsSearch(filters.SearchFilter):
-#     search = ProductDocument.search()
-
-#     def filter_queryset(self, request, queryset, view):
-#         queryset = ProductDocument.search()
-#         print(queryset)
-
-
-# class ProductViewset(viewsets.ModelViewSet):
-#     queryset = Product.objects.all()
-#     serializer_class = ProductSerializer
-#     filter_backends = (EsSearch,)
-#     search_fields = ['name', 'brand__name']
-#     # permission_classes = (IsAuthenticated,)
-
-class ProductViewset(DocumentViewSet):
+class GetProductViewset(DocumentViewSet):
     document = ProductDocument
-    serializer_class = ProductSerializer
+    serializer_class = GetProductSerializer
 
     lookup_field = 'name'
 
     filter_backends = [
         FilteringFilterBackend,
-        # OrderingFilterBackend,
-        # DefaultOrderingFilterBackend,
-        # SearchFilterBackend,
         CompoundSearchFilterBackend,
-        # SimpleQueryStringSearchFilterBackend,
+        FunctionalSuggesterFilterBackend,
+        SuggesterFilterBackend,
         # MultiMatchSearchFilterBackend,
-        # FunctionalSuggesterFilterBackend
     ]
+
+    # Suggester fields
+    suggester_fields = {
+        'name_suggest': {
+            'field': 'name.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+            ],
+            'options': {
+                'size': 20,  # Override default number of suggestions
+            },
+        }
+    }
 
     multi_match_search_fields = [
         'name',
-        'brand'
+        'brand.name'
     ]
 
     search_fields = (
         'name',
+        'name_en',
+        'name_de',
+        'name_pt',
+        'name_es',
         'brand.name',
     )
 
@@ -130,7 +123,14 @@ class ProductViewset(DocumentViewSet):
 
     ordering_fields = {
         'name': 'name',
-        'brand': 'brand',
+        'brand': 'brand.name',
     }
 
     ordering = ('name', 'brand.name')
+
+
+class ProductViewset(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    search_fields = ['name', 'brand__name']
+    # permission_classes = (IsAuthenticated,)

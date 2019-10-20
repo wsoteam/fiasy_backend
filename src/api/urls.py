@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from api.views.products import ProductViewset
+from api.views.products import ProductViewset, GetProductViewset
 from api.views.articles import ArticleViewset
 from api.views.recipes import RecipeViewset
 from api.views.user_profile import UserViewset, UserProfileViewset
@@ -11,6 +11,7 @@ from rest_framework_simplejwt import views as jwt_views
 
 
 router = routers.DefaultRouter()
+router.register('search', GetProductViewset, base_name='search')
 router.register('products', ProductViewset, base_name='product')
 router.register('articles', ArticleViewset)
 router.register('recipes', RecipeViewset)
