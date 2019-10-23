@@ -22,8 +22,6 @@ class ArticleCategorySerializer(serializers.ModelSerializer):
 
 
 class ArticleSerializer(serializers.ModelSerializer):
-    # category = ArticleCategorySerializer(read_only=True)
-
     class Meta:
         model = Article
         fields = '__all__'
@@ -40,3 +38,5 @@ class ArticleSerializer(serializers.ModelSerializer):
             instance.series
         ).data
         return representation
+
+

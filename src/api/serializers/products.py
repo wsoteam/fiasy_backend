@@ -72,7 +72,29 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = (
+            'id',
+            'name',
+            'category',
+            'brand',
+            'full_info',
+            'measurement_units',
+            'portion',
+            'is_liquid',
+            'kilojoules',
+            'calories',
+            'proteins',
+            'carbohydrates',
+            'sugar',
+            'fats',
+            'saturated_fats',
+            'monounsaturated_fats',
+            'polyunsaturated_fats',
+            'cholesterol',
+            'cellulose',
+            'sodium',
+            'pottasium',
+        )
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
@@ -86,4 +108,40 @@ class ProductSerializer(serializers.ModelSerializer):
         representation['brand'] = BrandSerializer(
             instance.brand
         ).data
+        return representation
+
+
+class EnProductSerializer(ProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_en
+        representation['full_info'] = instance.full_info_en
+        return representation
+
+
+class DeProductSerializer(ProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_de
+        representation['full_info'] = instance.full_info_de
+        return representation
+
+
+class PtProductSerializer(ProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_pt
+        representation['full_info'] = instance.full_info_pt
+        return representation
+
+
+class EsProductSerializer(ProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_es
+        representation['full_info'] = instance.full_info_es
         return representation

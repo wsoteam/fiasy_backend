@@ -5,7 +5,7 @@ from recipes.models import Recipe
 from api.serializers.recipes import RecipeSerializer
 
 
-class RecipeViewset(viewsets.ModelViewSet):
+class RecipeViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer
     filter_backends = (filters.SearchFilter,)

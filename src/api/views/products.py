@@ -1,8 +1,13 @@
-from rest_framework import viewsets, generics, mixins
+from rest_framework import viewsets
 from rest_framework import filters
 
 from products.models import Product
-from api.serializers.products import ProductSerializer, GetProductSerializer
+from api.serializers.products import (
+    ProductSerializer,
+    GetProductSerializer,
+    EnProductSerializer
+)
+
 from rest_framework.permissions import IsAuthenticated
 
 from elasticsearch_dsl import MultiSearch, Search
@@ -74,6 +79,10 @@ class CustomSearchFilter(filters.SearchFilter):
 
 
 class GetProductViewset(DocumentViewSet):
+    """
+    ES Document ReadOnly ViewSet
+    """
+
     document = ProductDocument
     serializer_class = GetProductSerializer
 
@@ -84,7 +93,6 @@ class GetProductViewset(DocumentViewSet):
         CompoundSearchFilterBackend,
         FunctionalSuggesterFilterBackend,
         SuggesterFilterBackend,
-        # MultiMatchSearchFilterBackend,
     ]
 
     # Suggester fields
@@ -129,8 +137,13 @@ class GetProductViewset(DocumentViewSet):
     ordering = ('name', 'brand.name')
 
 
-class ProductViewset(viewsets.ModelViewSet):
+class ProductViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     search_fields = ['name', 'brand__name']
     # permission_classes = (IsAuthenticated,)
+
+
+class EnProductViewset(viewsets.ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = EnProductSerializer
