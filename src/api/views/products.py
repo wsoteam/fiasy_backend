@@ -5,7 +5,10 @@ from products.models import Product
 from api.serializers.products import (
     ProductSerializer,
     GetProductSerializer,
-    EnProductSerializer
+    EnProductSerializer,
+    DeProductSerializer,
+    EsProductSerializer,
+    PtProductSerializer
 )
 
 from rest_framework.permissions import IsAuthenticated
@@ -103,7 +106,7 @@ class GetProductViewset(DocumentViewSet):
                 SUGGESTER_COMPLETION,
             ],
             'options': {
-                'size': 20,  # Override default number of suggestions
+                'size': 5,  # Override default number of suggestions
             },
         }
     }
@@ -144,6 +147,17 @@ class ProductViewset(viewsets.ReadOnlyModelViewSet):
     # permission_classes = (IsAuthenticated,)
 
 
-class EnProductViewset(viewsets.ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
+class EnProductViewset(ProductViewset):
     serializer_class = EnProductSerializer
+
+
+class DeProductViewset(ProductViewset):
+    serializer_class = DeProductSerializer
+
+
+class EsProductViewset(ProductViewset):
+    serializer_class = PtProductSerializer
+
+
+class PtProductViewset(ProductViewset):
+    serializer_class = EsProductSerializer
