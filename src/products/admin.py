@@ -180,14 +180,21 @@ class ProductResource(resources.ModelResource):
 
     class Meta:
         model = Product
-        exclude = ('id',)
-        import_id_fields = ['name']
+        import_id_fields = ['id']
         fields = (
             'id',
             'name',
+            'name_en',
+            'name_de',
+            'name_pt',
+            'name_es',
             'category',
             'brand',
             'full_info',
+            'full_info_en',
+            'full_info_de',
+            'full_info_pt',
+            'full_info_es',
             'barcode',
             'portion',
             'is_liquid',
@@ -318,22 +325,15 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
     )
 
 
-
-# class AddActionsAdmin(admin.ModelAdmin):
-#     change_list_template = 'admin/add_actions.html'
-
-# for category in Category.objects.all():
-#     def change_category(modeladmin, request, queryset, category=category):
-#         queryset.update(category=category)
-#     admin.site.add_action(
-#         change_category,
-#         name=_(str(category.name))
-#     )
-
-
+for category in Category.objects.all():
+    def change_category(modeladmin, request, queryset, category=category):
+        queryset.update(category=category)
+    admin.site.add_action(
+        change_category,
+        name=_(str(category.name))
+    )
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
-# admin.site.register(AddActionsAdmin)
