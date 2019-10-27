@@ -325,7 +325,7 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
     )
 
 
-for category in Category.objects.all():
+for category in Category.objects.all().order_by('name'):
     def change_category(modeladmin, request, queryset, category=category):
         queryset.update(category=category)
     admin.site.add_action(
