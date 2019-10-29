@@ -34,7 +34,6 @@ djangorestframework-simplejwt = "*"
 django-elasticsearch-dsl-drf = "*"
 django-elasticsearch-dsl = "*"
 django-modeltranslation = "*"
-sendsay-api-python = "*"
 
 [requires]
 python_version = "3.7"
