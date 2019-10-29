@@ -83,17 +83,17 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 
-# ELASTICSEARCH_DSL = {
-#     'default': {
-#         'hosts': 'localhost:9200'
-#     },
-# }
-
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': '78.47.35.187:9200'
+        'hosts': 'localhost:9200'
     },
 }
+
+# ELASTICSEARCH_DSL = {
+#     'default': {
+#         'hosts': '78.47.35.187:9200'
+#     },
+# }
 
 ROOT_URLCONF = 'fiasy.urls'
 
@@ -119,22 +119,23 @@ WSGI_APPLICATION = 'fiasy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "fiasy",
-        "USER": "db_user",
-        "PASSWORD": "Qq123456",
-        "HOST": "db",
-        "PORT": "5432",
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": "fiasy",
+#         "USER": "db_user",
+#         "PASSWORD": "Qq123456",
+#         "HOST": "db",
+#         "PORT": "5432",
+#     }
+# }
 
 
 # Password validation

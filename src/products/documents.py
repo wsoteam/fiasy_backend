@@ -42,10 +42,21 @@ class ProductDocument(Document):
         'id': fields.IntegerField(),
         'name': fields.TextField()
     })
-    brand = fields.ObjectField(properties={
-        'id': fields.IntegerField(),
-        'name': fields.StringField(analyzer='keyword'),
-    })
+    # brand = fields.ObjectField(properties={
+    #     'id': fields.IntegerField(),
+    #     'name': fields.StringField(analyzer='keyword'),
+    # })
+    brand = fields.NestedField(
+        properties={
+            'id': fields.IntegerField(),
+            'name': fields.StringField(
+                analyzer='keyword',
+                fields={
+                    'suggest': fields.CompletionField(),
+                }
+            ),
+        }
+    )
     full_info = fields.TextField()
     full_info_en = fields.TextField()
     full_info_de = fields.TextField()

@@ -17,6 +17,8 @@ from elasticsearch_dsl import MultiSearch, Search
 
 from django_elasticsearch_dsl_drf.constants import (
     SUGGESTER_COMPLETION,
+    SUGGESTER_PHRASE,
+    SUGGESTER_TERM,
     LOOKUP_FILTER_TERM,
     LOOKUP_FILTER_RANGE,
     LOOKUP_FILTER_WILDCARD,
@@ -104,6 +106,19 @@ class GetProductViewset(DocumentViewSet):
             'field': 'name.suggest',
             'suggesters': [
                 SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
+            ],
+            'options': {
+                'size': 5,  # Override default number of suggestions
+            },
+        },
+        'brand_suggest': {
+            'field': 'brand.name.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
             ],
             'options': {
                 'size': 5,  # Override default number of suggestions
