@@ -3,6 +3,10 @@ from rest_framework import serializers
 from users.models import User, UserProfile
 
 
+class SendsaySetMemberSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
+
 class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
