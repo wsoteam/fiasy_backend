@@ -14,7 +14,7 @@ from api.serializers.user_profile import (
 
 from rest_framework.permissions import IsAuthenticated
 
-from sendsay.api import SendsayAPI
+from sendsay_api.sendsay.api import SendsayAPI
 
 
 class SendsaySetMemberView(views.APIView):
@@ -26,7 +26,7 @@ class SendsaySetMemberView(views.APIView):
 
         if serializer.is_valid():
             email = serializer.data.get('email')
-            response = api.request(
+            api.request(
                 'member.set',
                 {
                     'email': email,
@@ -36,7 +36,7 @@ class SendsaySetMemberView(views.APIView):
                     'return_fresh_obj': 1
                 }
             )
-            return Response(response)
+            return Response({'message': email + ' is added'})
         else:
             return Response({'message': 'Email is not valid'})
 
