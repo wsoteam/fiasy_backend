@@ -59,6 +59,7 @@ class Article(models.Model):
         ArticleSeries,
         verbose_name=_("Article Series"),
         null=True,
+        blank=True,
         related_name='article_series',
         on_delete=models.PROTECT
     )
@@ -66,6 +67,7 @@ class Article(models.Model):
         ArticleCategory,
         verbose_name=_("Category"),
         null=True,
+        blank=True,
         related_name='articles',
         on_delete=models.PROTECT
     )
