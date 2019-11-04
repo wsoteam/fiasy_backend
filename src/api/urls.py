@@ -13,7 +13,8 @@ from api.views.products import (
 
 from api.views.articles import ArticleViewset
 from api.views.recipes import RecipeViewset
-from api.views.user_profile import UserViewset, UserProfileViewset,  SendsaySetMemberView
+from api.views.user_profile import UserViewset, UserProfileViewset
+from api.views.sendsay import SendsaySetMemberView
 
 from rest_framework_simplejwt import views as jwt_views
 
