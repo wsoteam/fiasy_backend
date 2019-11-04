@@ -158,6 +158,7 @@ class GetProductViewset(DocumentViewSet):
 class ProductViewset(viewsets.ReadOnlyModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = (CustomSearchFilter,)
     search_fields = ['name', 'brand__name']
     # permission_classes = (IsAuthenticated,)
 
