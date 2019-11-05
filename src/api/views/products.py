@@ -4,11 +4,15 @@ from rest_framework import filters
 from products.models import Product
 from api.serializers.products import (
     ProductSerializer,
-    GetProductSerializer,
     EnProductSerializer,
     DeProductSerializer,
     EsProductSerializer,
-    PtProductSerializer
+    PtProductSerializer,
+    GetProductSerializer,
+    EnGetProductSerializer,
+    DeGetProductSerializer,
+    EsGetProductSerializer,
+    PtGetProductSerializer
 )
 
 from rest_framework.permissions import IsAuthenticated
@@ -153,6 +157,22 @@ class GetProductViewset(DocumentViewSet):
     }
 
     ordering = ('name', 'brand.name')
+
+
+class EnGetProductViewset(GetProductViewset):
+    serializer_class = EnGetProductSerializer
+
+
+class DeGetProductViewset(GetProductViewset):
+    serializer_class = DeGetProductSerializer
+
+
+class PtGetProductViewset(GetProductViewset):
+    serializer_class = PtGetProductSerializer
+
+
+class EsGetProductViewset(GetProductViewset):
+    serializer_class = EsGetProductSerializer
 
 
 class ProductViewset(viewsets.ReadOnlyModelViewSet):

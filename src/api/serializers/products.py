@@ -14,17 +14,9 @@ class GetProductSerializer(DocumentSerializer):
         fields = (
             'id',
             'name',
-            'name_en',
-            'name_de',
-            'name_pt',
-            'name_es',
             'category',
             'brand',
             'full_info',
-            'full_info_en',
-            'full_info_de',
-            'full_info_pt',
-            'full_info_es',
             'measurement_units',
             'portion',
             'is_liquid',
@@ -42,6 +34,42 @@ class GetProductSerializer(DocumentSerializer):
             'sodium',
             'pottasium',
         )
+
+
+class EnGetProductSerializer(GetProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_en
+        representation['full_info'] = instance.full_info_en
+        return representation
+
+
+class DeGetProductSerializer(GetProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_de
+        representation['full_info'] = instance.full_info_de
+        return representation
+
+
+class PtGetProductSerializer(GetProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_pt
+        representation['full_info'] = instance.full_info_pt
+        return representation
+
+
+class EsGetProductSerializer(GetProductSerializer):
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['name'] = instance.name_es
+        representation['full_info'] = instance.full_info_es
+        return representation
 
 
 class CategorySerializer(serializers.ModelSerializer):

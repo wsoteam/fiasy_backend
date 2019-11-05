@@ -42,10 +42,6 @@ class ProductDocument(Document):
         'id': fields.IntegerField(),
         'name': fields.TextField()
     })
-    # brand = fields.ObjectField(properties={
-    #     'id': fields.IntegerField(),
-    #     'name': fields.StringField(analyzer='keyword'),
-    # })
     brand = fields.NestedField(
         properties={
             'id': fields.IntegerField(),
