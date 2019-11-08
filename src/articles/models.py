@@ -1,5 +1,7 @@
 from django.db import models
 
+from colorfield.fields import ColorField
+
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -58,6 +60,7 @@ class ArticleCategory(models.Model):
 
 class Article(models.Model):
     title = models.CharField(_('Title'), max_length=200)
+    title_color = ColorField(_('Title color'), default='#000000')
     body = models.TextField(_('Body'))
     image = models.ImageField(
         _('Image'),

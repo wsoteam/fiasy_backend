@@ -51,6 +51,7 @@ EXTERNAL_APPS = [
     'import_export',
     'django_elasticsearch_dsl',  # Django ES integration
     'django_elasticsearch_dsl_drf',  # DRF ES integration
+    'colorfield'
 ]
 
 LOCAL_APPS = [

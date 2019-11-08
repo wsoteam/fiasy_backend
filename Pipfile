@@ -34,6 +34,7 @@ djangorestframework-simplejwt = "*"
 django-elasticsearch-dsl-drf = "*"
 django-elasticsearch-dsl = "*"
 django-modeltranslation = "*"
+django-colorfield = "*"
 
 [requires]
 python_version = "3.7"
