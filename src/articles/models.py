@@ -1,13 +1,16 @@
 from django.db import models
 
-from colorfield.fields import ColorField
-
 from django.utils.translation import ugettext_lazy as _
 
 
 class Author(models.Model):
     first_name = models.CharField(_("First Name"), max_length=80, null=True)
     last_name = models.CharField(_("Last Name"), max_length=80, null=True)
+    photo = models.ImageField(
+        _('Author photo'),
+        upload_to='author_photo',
+        blank=True
+    )
     bio = models.TextField(_("Biography"), blank=True)
     social_url = models.URLField(_("Social Media URL"), blank=True, null=True)
     achievement_1 = models.TextField(
@@ -60,7 +63,6 @@ class ArticleCategory(models.Model):
 
 class Article(models.Model):
     title = models.CharField(_('Title'), max_length=200)
-    title_color = ColorField(_('Title color'), default='#000000')
     body = models.TextField(_('Body'))
     image = models.ImageField(
         _('Image'),
