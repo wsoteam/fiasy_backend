@@ -37,13 +37,14 @@ from django_elasticsearch_dsl_drf.filter_backends import (
     FilteringFilterBackend,
     NestedFilteringFilterBackend,
     OrderingFilterBackend,
-    DefaultOrderingFilterBackend,
     SearchFilterBackend,
     CompoundSearchFilterBackend,
     SimpleQueryStringSearchFilterBackend,
     MultiMatchSearchFilterBackend,
     FunctionalSuggesterFilterBackend,
     SuggesterFilterBackend,
+    NestedFilteringFilterBackend,
+    OrderingFilterBackend,
 )
 
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
@@ -102,6 +103,8 @@ class GetProductViewset(DocumentViewSet):
         CompoundSearchFilterBackend,
         FunctionalSuggesterFilterBackend,
         SuggesterFilterBackend,
+        NestedFilteringFilterBackend,
+        OrderingFilterBackend,
     ]
 
     # Suggester fields
@@ -114,7 +117,7 @@ class GetProductViewset(DocumentViewSet):
                 SUGGESTER_TERM,
             ],
             'options': {
-                'size': 5,  # Override default number of suggestions
+                'size': 25,  # Override default number of suggestions
             },
         },
         'brand_suggest': {
@@ -125,7 +128,7 @@ class GetProductViewset(DocumentViewSet):
                 SUGGESTER_TERM,
             ],
             'options': {
-                'size': 5,  # Override default number of suggestions
+                'size': 25,  # Override default number of suggestions
             },
         }
     }
@@ -142,21 +145,42 @@ class GetProductViewset(DocumentViewSet):
         'name_pt',
         'name_es',
         'brand.name',
+        'category.name',
     )
 
     filter_fields = {
         'name': 'name',
         'brand': 'brand.name',
         'category': 'category.name',
-        # 'default_lookup': LOOKUP_FILTER_TERM,
+    }
+
+    nested_filter_fields = {
+        'brand': {
+            'field': 'brand.name',
+            'path': 'brand',
+        }
     }
 
     ordering_fields = {
         'name': 'name',
-        'brand': 'brand.name',
+        # 'category': 'category.name'
+        'brand': {
+            'field': 'brand.name',
+            'path': 'brand',
+        }
+        # 'brand': 'brand.name',
+        # 'category': 'category.name',
+        # 'brand': {
+        #     'brand.name': {
+        #         'nested': {
+        #             'path': 'brand'
+        #         }
+        #     }
+        # },
     }
 
-    ordering = ('name', 'brand.name')
+    # ordering = ('brand', 'name',)
+    ordering = 'brand'
 
 
 class EnGetProductViewset(GetProductViewset):
