@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 
 from import_export import resources
-from import_export.admin import ImportExportModelAdmin
+from import_export.admin import ImportExportModelAdmin, ExportActionMixin
 
 from admin_numeric_filter.admin import NumericFilterModelAdmin,\
     RangeNumericFilter
@@ -45,6 +45,23 @@ class BrandAddingFilter(admin.SimpleListFilter):
             return queryset.filter(brand__isnull=True)
         elif self.value() == 'with_brand':
             return queryset.filter(brand__isnull=False)
+
+
+class MeasurementUnitsAddingFilter(admin.SimpleListFilter):
+    parameter_name = 'measurement units add'
+    title = _('By Measurement Units Adding')
+
+    def lookups(self, request, model_admin):
+        return (
+            ('with_measurement_units', _('With Measurement Units')),
+            ('without_measurement_units', _('Without Measurement Units'))
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'without_measurement_units':
+            return queryset.filter(measurement_units__isnull=True)
+        elif self.value() == 'with_measurement_units':
+            return queryset.filter(measurement_units__isnull=False)
 
 
 class InputFilter(admin.SimpleListFilter):
@@ -214,17 +231,11 @@ class ProductResource(resources.ModelResource):
         )
 
 
-def add_actions():
-    for category in Category.objects.all():
-        def change_category(modeladmin, request, queryset, category=category):
-            queryset.update(category=category)
-        admin.site.add_action(
-            change_category,
-            name=_(str(category.name))
-        )
-
-
-class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelAdmin):
+class ProductAdmin(
+    ImportExportModelAdmin,
+    NumericFilterModelAdmin,
+    admin.ModelAdmin
+):
     list_display = [
         'name',
         'brand',
@@ -239,6 +250,7 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
         MinusWordsFilter,
         BrandFilter,
         BrandAddingFilter,
+        MeasurementUnitsAddingFilter,
         CaregoryProductsFilter,
         ('calories', CustomRangeNumericFilter),
         ('proteins', CustomRangeNumericFilter),
@@ -325,15 +337,23 @@ class ProductAdmin(ImportExportModelAdmin, NumericFilterModelAdmin, admin.ModelA
     )
 
 
-for category in Category.objects.all().order_by('name'):
-    def change_category(modeladmin, request, queryset, category=category):
-        queryset.update(category=category)
-    admin.site.add_action(
-        change_category,
-        name=_(str(category.name))
-    )
+def update_actions(
+    modeladmin,
+    request,
+    queryset,
+    categories=Category.objects.all().order_by('name')
+):
+    # for category in Category.objects.all().order_by('name'):
+    for category in categories:
+        def change_category(modeladmin, request, queryset, category=category):
+            queryset.update(category=category)
+        admin.site.add_action(
+            change_category,
+            name=_(str(category.name))
+        )
 
 
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
+admin.site.add_action(update_actions)
