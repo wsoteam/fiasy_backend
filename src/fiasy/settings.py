@@ -51,7 +51,6 @@ EXTERNAL_APPS = [
     'import_export',
     'django_elasticsearch_dsl',  # Django ES integration
     'django_elasticsearch_dsl_drf',  # DRF ES integration
-    'colorfield'
 ]
 
 LOCAL_APPS = [
@@ -90,9 +89,15 @@ REST_FRAMEWORK = {
 #     },
 # }
 
+# ELASTICSEARCH_DSL = {
+#     'default': {
+#         'hosts': '78.47.35.187:9200'
+#     },
+# }
+
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': '78.47.35.187:9200'
+        'hosts': '116.203.193.111:9200'
     },
 }
 
