@@ -58,7 +58,7 @@ class ProductDocument(Document):
     full_info_de = fields.TextField()
     full_info_pt = fields.TextField()
     full_info_es = fields.TextField()
-    measurement_units = fields.ObjectField(properties={
+    measurement_units = fields.NestedField(properties={
         'id': fields.IntegerField(),
         'name': fields.TextField(),
         'amount': fields.FloatField()
