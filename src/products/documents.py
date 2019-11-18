@@ -9,30 +9,35 @@ from products.models import Product, Category, Brand, MeasurementUnit
 @registry.register_document
 class ProductDocument(Document):
     name = fields.StringField(
+        fielddata=True,
         fields={
-            'raw': fields.StringField(analyzer='keyword'),
+            'raw': fields.KeywordField(),
             'suggest': fields.CompletionField(),
         }
     )
     name_en = fields.StringField(
+        fielddata=True,
         fields={
             'raw': fields.StringField(analyzer='keyword'),
             'suggest': fields.CompletionField(),
         }
     )
     name_de = fields.StringField(
+        fielddata=True,
         fields={
             'raw': fields.StringField(analyzer='keyword'),
             'suggest': fields.CompletionField(),
         }
     )
     name_pt = fields.StringField(
+        fielddata=True,
         fields={
             'raw': fields.StringField(analyzer='keyword'),
             'suggest': fields.CompletionField(),
         }
     )
     name_es = fields.StringField(
+        fielddata=True,
         fields={
             'raw': fields.StringField(analyzer='keyword'),
             'suggest': fields.CompletionField(),
@@ -40,12 +45,13 @@ class ProductDocument(Document):
     )
     category = fields.ObjectField(properties={
         'id': fields.IntegerField(),
-        'name': fields.TextField()
+        'name': fields.TextField(analyzer='keyword')
     })
-    brand = fields.NestedField(
+    brand = fields.ObjectField(
         properties={
             'id': fields.IntegerField(),
             'name': fields.StringField(
+                fielddata=True,
                 analyzer='keyword',
                 fields={
                     'suggest': fields.CompletionField(),
