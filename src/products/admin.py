@@ -343,7 +343,6 @@ def update_actions(
     queryset,
     categories=Category.objects.all().order_by('name')
 ):
-    # for category in Category.objects.all().order_by('name'):
     for category in categories:
         def change_category(modeladmin, request, queryset, category=category):
             queryset.update(category=category)
@@ -353,7 +352,13 @@ def update_actions(
         )
 
 
+def set_brand_null(modeladmin, request, queryset):
+    brand = Brand.objects.get(name='null')
+    queryset.update(brand=brand)
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
 admin.site.add_action(update_actions)
+admin.site.add_action(set_brand_null, name=_('Set brand null'))

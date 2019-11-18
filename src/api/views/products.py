@@ -95,13 +95,15 @@ class GetProductViewset(DocumentViewSet):
     document = ProductDocument
     serializer_class = GetProductSerializer
 
-    lookup_field = 'name'
+    # lookup_field = 'name'
 
     filter_backends = [
         FilteringFilterBackend,
         CompoundSearchFilterBackend,
         FunctionalSuggesterFilterBackend,
         SuggesterFilterBackend,
+        OrderingFilterBackend,
+        DefaultOrderingFilterBackend,
     ]
 
     # Suggester fields
@@ -148,7 +150,6 @@ class GetProductViewset(DocumentViewSet):
         'name': 'name',
         'brand': 'brand.name',
         'category': 'category.name',
-        # 'default_lookup': LOOKUP_FILTER_TERM,
     }
 
     ordering_fields = {
@@ -156,7 +157,7 @@ class GetProductViewset(DocumentViewSet):
         'brand': 'brand.name',
     }
 
-    ordering = ('name', 'brand.name')
+    # ordering = ('name', 'brand',)
 
 
 class EnGetProductViewset(GetProductViewset):
