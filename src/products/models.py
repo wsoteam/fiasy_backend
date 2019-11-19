@@ -119,6 +119,11 @@ class Product(models.Model):
         default=-1.0
     )
 
+    def get_search_field(self):
+        if self.brand:
+            search_field = self.name + ' (' + self.brand.name + ')'
+            return search_field
+
     class Meta:
         verbose_name = _('Product')
         verbose_name_plural = _('Products')

@@ -104,6 +104,7 @@ class GetProductViewset(DocumentViewSet):
         SuggesterFilterBackend,
         OrderingFilterBackend,
         DefaultOrderingFilterBackend,
+        MultiMatchSearchFilterBackend,
     ]
 
     # Suggester fields
@@ -133,8 +134,9 @@ class GetProductViewset(DocumentViewSet):
     }
 
     multi_match_search_fields = [
+        'brand.name',
         'name',
-        'brand.name'
+        'get_search_field'
     ]
 
     search_fields = (
@@ -144,6 +146,7 @@ class GetProductViewset(DocumentViewSet):
         'name_pt',
         'name_es',
         'brand.name',
+        "get_search_field"
     )
 
     filter_fields = {
@@ -157,7 +160,7 @@ class GetProductViewset(DocumentViewSet):
         'brand': 'brand.name',
     }
 
-    # ordering = ('name', 'brand',)
+    ordering = ('_score', 'name')
 
 
 class EnGetProductViewset(GetProductViewset):

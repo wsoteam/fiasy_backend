@@ -70,6 +70,10 @@ class ProductDocument(Document):
         'amount': fields.FloatField()
     })
 
+    get_search_field = fields.StringField(
+        fielddata=True,
+    )
+
     def get_instances_from_related(self, related_instance):
         pass
 
