@@ -141,10 +141,10 @@ class GetProductViewset(DocumentViewSet):
 
     search_fields = (
         'name',
-        'name_en',
-        'name_de',
-        'name_pt',
-        'name_es',
+        # 'name_en',
+        # 'name_de',
+        # 'name_pt',
+        # 'name_es',
         'brand.name',
         "get_search_field"
     )
@@ -165,18 +165,38 @@ class GetProductViewset(DocumentViewSet):
 
 class EnGetProductViewset(GetProductViewset):
     serializer_class = EnGetProductSerializer
+    search_fields = (
+        'name_en',
+        'brand.name',
+        'get_search_field'
+    )
 
 
 class DeGetProductViewset(GetProductViewset):
     serializer_class = DeGetProductSerializer
+    search_fields = (
+        'name_de',
+        'brand.name',
+        'get_search_field'
+    )
 
 
 class PtGetProductViewset(GetProductViewset):
     serializer_class = PtGetProductSerializer
+    search_fields = (
+        'name_pt',
+        'brand.name',
+        'get_search_field'
+    )
 
 
 class EsGetProductViewset(GetProductViewset):
     serializer_class = EsGetProductSerializer
+    search_fields = (
+        'name_es',
+        'brand.name',
+        'get_search_field'
+    )
 
 
 class ProductViewset(viewsets.ReadOnlyModelViewSet):
