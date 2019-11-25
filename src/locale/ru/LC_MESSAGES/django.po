@@ -8,82 +8,124 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-10 11:19+0300\n"
+"POT-Creation-Date: 2019-11-25 08:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\articles\models.py:7 .\products\models.py:7 .\products\models.py:28
-#: .\products\models.py:40 .\products\models.py:131 .\recipes\models.py:9
+#: .\articles\models.py:7
+msgid "First Name"
+msgstr "Имя"
+
+#: .\articles\models.py:8
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: .\articles\models.py:10
+msgid "Author photo"
+msgstr "Фото автора"
+
+#: .\articles\models.py:14
+msgid "Biography"
+msgstr "Биография"
+
+#: .\articles\models.py:15
+msgid "Social Media URL"
+msgstr "Соц. сети URL"
+
+#: .\articles\models.py:17
+msgid "Achievement #1"
+msgstr "Достижение #1"
+
+#: .\articles\models.py:22
+msgid "Achievement #2"
+msgstr "Достижение #2"
+
+#: .\articles\models.py:27
+msgid "Achievement #3"
+msgstr "Достижение #3"
+
+#: .\articles\models.py:37 .\articles\models.py:44 .\products\models.py:7
+#: .\products\models.py:28 .\products\models.py:40 .\products\models.py:136
+#: .\recipes\models.py:9
 msgid "Name"
 msgstr "Имя"
 
-#: .\articles\models.py:10 .\products\models.py:10
+#: .\articles\models.py:47 .\products\models.py:10
 msgid "Parent"
 msgstr "Родитель"
 
-#: .\articles\models.py:18
+#: .\articles\models.py:55
 msgid "Article Category"
 msgstr "Категория статьи"
 
-#: .\articles\models.py:19
+#: .\articles\models.py:56
 msgid "Article Categories"
 msgstr "Категории статей"
 
-#: .\articles\models.py:28
+#: .\articles\models.py:65
 msgid "Title"
 msgstr "Заглавие"
 
-#: .\articles\models.py:29
+#: .\articles\models.py:66
 msgid "Body"
 msgstr "Тело"
 
-#: .\articles\models.py:31 .\recipes\models.py:11 .\users\models.py:43
+#: .\articles\models.py:68 .\recipes\models.py:11 .\users\models.py:44
 msgid "Image"
 msgstr "Картинка"
 
-#: .\articles\models.py:35 .\recipes\models.py:27
+#: .\articles\models.py:72 .\recipes\models.py:26
+msgid "Premium"
+msgstr "Премиум"
+
+#: .\articles\models.py:73 .\recipes\models.py:27
 msgid "Date"
 msgstr "Дата"
 
-#: .\articles\models.py:37
-msgid "Author"
-msgstr ""
+#: .\articles\models.py:82
+msgid "Article Series"
+msgstr "Цикл статей"
 
-#: .\articles\models.py:44 .\products\models.py:18 .\products\models.py:43
+#: .\articles\models.py:89
+msgid "Day in Series"
+msgstr "День в кицле"
+
+#: .\articles\models.py:96 .\products\models.py:18 .\products\models.py:43
 msgid "Category"
 msgstr "Категория"
 
-#: .\articles\models.py:51
+#: .\articles\models.py:104
 msgid "Article"
 msgstr "Статья"
 
-#: .\articles\models.py:52
+#: .\articles\models.py:105
 msgid "Articles"
 msgstr "Статьи"
 
-#: .\fiasy\settings.py:158
+#: .\fiasy\settings.py:172
 msgid "Russian"
 msgstr "Русский"
 
-#: .\fiasy\settings.py:159
+#: .\fiasy\settings.py:173
 msgid "English"
 msgstr "Английский"
 
-#: .\fiasy\settings.py:160
+#: .\fiasy\settings.py:174
 msgid "German"
-msgstr ""
+msgstr "Немецкий"
 
-#: .\fiasy\settings.py:161
+#: .\fiasy\settings.py:175
 msgid "Portuguese"
-msgstr ""
+msgstr "Португальский"
 
-#: .\fiasy\settings.py:162
+#: .\fiasy\settings.py:176
 msgid "Spanish"
-msgstr ""
+msgstr "Испанский"
 
 #: .\products\admin.py:18
 msgid "By Category Adding"
@@ -99,35 +141,51 @@ msgstr "Без категорий"
 
 #: .\products\admin.py:35
 msgid "By Brand Adding"
-msgstr ""
+msgstr "По наличию бренда"
 
 #: .\products\admin.py:39
 msgid "With brand"
-msgstr ""
+msgstr "С брендом"
 
 #: .\products\admin.py:40
 msgid "Without brand"
-msgstr ""
+msgstr "Без бренда"
 
-#: .\products\admin.py:70
+#: .\products\admin.py:52
+msgid "By Measurement Units Adding"
+msgstr "По наличию единиц измерения"
+
+#: .\products\admin.py:56
+msgid "With Measurement Units"
+msgstr "С единицами измерения"
+
+#: .\products\admin.py:57
+msgid "Without Measurement Units"
+msgstr "Без единиц измерения"
+
+#: .\products\admin.py:87
 msgid "Negative Keywords"
 msgstr "Минус слова"
 
-#: .\products\admin.py:85
+#: .\products\admin.py:102
 msgid "By Category Parent"
 msgstr "По родительской категории"
 
-#: .\products\admin.py:101
+#: .\products\admin.py:118
 msgid "By Brand"
 msgstr "По Бренду"
 
-#: .\products\admin.py:245
+#: .\products\admin.py:171 .\products\admin.py:296
 msgid "Name Localization"
 msgstr "Локализация имени"
 
-#: .\products\admin.py:267
+#: .\products\admin.py:319
 msgid "Full Info Localization"
 msgstr "Локализация полной информации"
+
+#: .\products\admin.py:380
+msgid "Set brand null"
+msgstr ""
 
 #: .\products\models.py:19
 msgid "Categories"
@@ -161,15 +219,15 @@ msgstr "Это жидкость"
 msgid "Kilojoules"
 msgstr "Килоджоули"
 
-#: .\products\models.py:74 .\users\models.py:71
+#: .\products\models.py:74 .\users\models.py:72
 msgid "Calories"
 msgstr "Калории"
 
-#: .\products\models.py:78 .\users\models.py:72
+#: .\products\models.py:78 .\users\models.py:73
 msgid "Proteins"
 msgstr "Белки"
 
-#: .\products\models.py:82 .\users\models.py:69
+#: .\products\models.py:82 .\users\models.py:70
 msgid "Carbohydrates"
 msgstr "Углеводы"
 
@@ -177,7 +235,7 @@ msgstr "Углеводы"
 msgid "Sugar"
 msgstr "Сахар"
 
-#: .\products\models.py:90 .\users\models.py:70
+#: .\products\models.py:90 .\users\models.py:71
 msgid "Fats"
 msgstr "Жиры"
 
@@ -209,23 +267,23 @@ msgstr "Натрий"
 msgid "Pottasium"
 msgstr "Калий"
 
-#: .\products\models.py:123 .\products\models.py:135
+#: .\products\models.py:128 .\products\models.py:140
 msgid "Product"
 msgstr "Продукт"
 
-#: .\products\models.py:124 .\recipes\models.py:21
+#: .\products\models.py:129 .\recipes\models.py:21
 msgid "Products"
 msgstr "Продукты"
 
-#: .\products\models.py:132 .\recipes\models.py:98
+#: .\products\models.py:137 .\recipes\models.py:98
 msgid "Amount"
 msgstr "Количество"
 
-#: .\products\models.py:143
+#: .\products\models.py:148
 msgid "Measurement unit"
 msgstr "Единица измерения"
 
-#: .\products\models.py:144
+#: .\products\models.py:149
 msgid "Measurement units"
 msgstr "Единицы измерения"
 
@@ -240,10 +298,6 @@ msgstr "Время приготовления"
 #: .\recipes\models.py:17
 msgid "Cooking process"
 msgstr "Процесс приготовления"
-
-#: .\recipes\models.py:26
-msgid "Premium"
-msgstr ""
 
 #: .\recipes\models.py:28
 msgid "Is moderated"
@@ -366,34 +420,34 @@ msgstr "Мужчина"
 msgid "Female"
 msgstr "Женщина"
 
-#: .\users\models.py:48
+#: .\users\models.py:49
 msgid "Gender"
 msgstr "Пол"
 
-#: .\users\models.py:54
+#: .\users\models.py:55
 msgid "Activity"
 msgstr "Активность"
 
-#: .\users\models.py:60
+#: .\users\models.py:61
 msgid "Goals"
 msgstr "Цели"
 
-#: .\users\models.py:65
+#: .\users\models.py:66
 msgid "Age"
 msgstr "Возраст"
 
-#: .\users\models.py:66
+#: .\users\models.py:67
 msgid "Height"
 msgstr "Высота"
 
-#: .\users\models.py:67
+#: .\users\models.py:68
 msgid "Weight"
 msgstr "Вес"
 
-#: .\users\models.py:68
+#: .\users\models.py:69
 msgid "Birth date"
 msgstr "Дата рождения"
 
-#: .\users\models.py:73
+#: .\users\models.py:74
 msgid "Water"
 msgstr "Вода"
