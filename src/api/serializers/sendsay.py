@@ -11,4 +11,4 @@ OS_CHOICES = (
 
 class SendsaySetMemberSerializer(serializers.Serializer):
     email = serializers.EmailField()
-    os = serializers.ChoiceField(OS_CHOICES)
+    os = serializers.CharField()

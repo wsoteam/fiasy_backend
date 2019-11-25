@@ -5,7 +5,9 @@ from rest_framework import views
 from rest_framework.response import Response
 
 from api.serializers.sendsay import (
-    SendsaySetMemberSerializer
+    SendsaySetMemberSerializer,
+    _ios_group_id,
+    _android_group_id
 )
 
 
@@ -15,10 +17,13 @@ class SendsaySetMemberView(views.APIView):
     def post(self, request):
         serializer = SendsaySetMemberSerializer(data=request.data)
         api = SendsayAPI(login='sav@wsoteam.com', password='13Kalibr13280190')
-
         if serializer.is_valid():
             email = serializer.data.get('email')
-            group_id = serializer.data.get('os')
+            group = serializer.data.get('os').lower()
+            if group == 'android':
+                group_id = _android_group_id
+            elif group == 'ios':
+                group_id = _ios_group_id
             api.request(
                 'member.set',
                 {
