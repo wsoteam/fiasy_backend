@@ -198,6 +198,7 @@ class ProductResource(resources.ModelResource):
     class Meta:
         model = Product
         import_id_fields = ['id']
+
         fields = (
             'id',
             'name',
@@ -337,6 +338,31 @@ class ProductAdmin(
     )
 
 
+class MeasurementUnitResource(resources.ModelResource):
+    class Meta:
+        model = MeasurementUnit
+        import_id_fields = ['id']
+
+        fields = (
+            'id',
+            'name',
+            'name_en',
+            'name_de',
+            'name_pt',
+            'name_es',
+            'amount',
+            'product',
+        )
+
+
+class MeasurementUnitAdmin(
+    ImportExportModelAdmin,
+    NumericFilterModelAdmin,
+    admin.ModelAdmin
+):
+    resource_class = MeasurementUnitResource
+
+
 def update_actions(
     modeladmin,
     request,
@@ -360,5 +386,6 @@ def set_brand_null(modeladmin, request, queryset):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(MeasurementUnit, MeasurementUnitAdmin)
 admin.site.add_action(update_actions)
 admin.site.add_action(set_brand_null, name=_('Set brand null'))
