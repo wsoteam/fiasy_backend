@@ -35,15 +35,11 @@ from django_elasticsearch_dsl_drf.constants import (
 
 from django_elasticsearch_dsl_drf.filter_backends import (
     FilteringFilterBackend,
-    NestedFilteringFilterBackend,
-    OrderingFilterBackend,
-    DefaultOrderingFilterBackend,
-    SearchFilterBackend,
     CompoundSearchFilterBackend,
-    SimpleQueryStringSearchFilterBackend,
-    MultiMatchSearchFilterBackend,
     FunctionalSuggesterFilterBackend,
     SuggesterFilterBackend,
+    OrderingFilterBackend,
+    DefaultOrderingFilterBackend,
 )
 
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
@@ -104,7 +100,6 @@ class GetProductViewset(DocumentViewSet):
         SuggesterFilterBackend,
         OrderingFilterBackend,
         DefaultOrderingFilterBackend,
-        MultiMatchSearchFilterBackend,
     ]
 
     # Suggester fields
@@ -133,19 +128,13 @@ class GetProductViewset(DocumentViewSet):
         }
     }
 
-    multi_match_search_fields = [
-        'brand.name',
-        'name',
-        'get_search_field'
-    ]
-
     search_fields = (
         'name',
         # 'name_en',
         # 'name_de',
         # 'name_pt',
         # 'name_es',
-        'brand.name',
+        # 'brand.name',
         "get_search_field"
     )
 
@@ -167,36 +156,88 @@ class EnGetProductViewset(GetProductViewset):
     serializer_class = EnGetProductSerializer
     search_fields = (
         'name_en',
-        'brand.name',
-        'get_search_field'
+        # 'get_search_field'
     )
+
+    suggester_fields = {
+        'name_suggest': {
+            'field': 'name_en.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
+            ],
+            'options': {
+                'size': 5,  # Override default number of suggestions
+            },
+        },
+    }
 
 
 class DeGetProductViewset(GetProductViewset):
     serializer_class = DeGetProductSerializer
     search_fields = (
         'name_de',
-        'brand.name',
-        'get_search_field'
+        # 'get_search_field'
     )
+
+    suggester_fields = {
+        'name_suggest': {
+            'field': 'name_de.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
+            ],
+            'options': {
+                'size': 5,  # Override default number of suggestions
+            },
+        },
+    }
 
 
 class PtGetProductViewset(GetProductViewset):
     serializer_class = PtGetProductSerializer
     search_fields = (
         'name_pt',
-        'brand.name',
-        'get_search_field'
+        # 'get_search_field'
     )
+
+    suggester_fields = {
+        'name_suggest': {
+            'field': 'name_pt.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
+            ],
+            'options': {
+                'size': 5,  # Override default number of suggestions
+            },
+        },
+    }
 
 
 class EsGetProductViewset(GetProductViewset):
     serializer_class = EsGetProductSerializer
     search_fields = (
         'name_es',
-        'brand.name',
-        'get_search_field'
+        # 'get_search_field'
     )
+
+    suggester_fields = {
+        'name_suggest': {
+            'field': 'name_es.suggest',
+            'suggesters': [
+                SUGGESTER_COMPLETION,
+                SUGGESTER_PHRASE,
+                SUGGESTER_TERM,
+            ],
+            'options': {
+                'size': 5,  # Override default number of suggestions
+            },
+        },
+    }
 
 
 class ProductViewset(viewsets.ReadOnlyModelViewSet):
