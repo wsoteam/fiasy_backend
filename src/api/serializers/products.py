@@ -42,6 +42,8 @@ class EnGetProductSerializer(GetProductSerializer):
         representation = super().to_representation(instance)
         representation['name'] = instance.name_en
         representation['full_info'] = instance.full_info_en
+        for i in representation['measurement_units']:
+            i['name'] = i['name_en']
         return representation
 
 
@@ -51,6 +53,8 @@ class DeGetProductSerializer(GetProductSerializer):
         representation = super().to_representation(instance)
         representation['name'] = instance.name_de
         representation['full_info'] = instance.full_info_de
+        for i in representation['measurement_units']:
+            i['name'] = i['name_de']
         return representation
 
 
@@ -60,6 +64,8 @@ class PtGetProductSerializer(GetProductSerializer):
         representation = super().to_representation(instance)
         representation['name'] = instance.name_pt
         representation['full_info'] = instance.full_info_pt
+        for i in representation['measurement_units']:
+            i['name'] = i['name_pt']
         return representation
 
 
@@ -69,6 +75,8 @@ class EsGetProductSerializer(GetProductSerializer):
         representation = super().to_representation(instance)
         representation['name'] = instance.name_es
         representation['full_info'] = instance.full_info_es
+        for i in representation['measurement_units']:
+            i['name'] = i['name_es']
         return representation
 
 
