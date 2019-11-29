@@ -67,6 +67,10 @@ class ProductDocument(Document):
     measurement_units = fields.NestedField(properties={
         'id': fields.IntegerField(),
         'name': fields.TextField(),
+        'name_en': fields.TextField(),
+        'name_de': fields.TextField(),
+        'name_pt': fields.TextField(),
+        'name_es': fields.TextField(),
         'amount': fields.FloatField()
     })
 
