@@ -27,7 +27,7 @@ SECRET_KEY = 'v^*bmj!$r+m9x)45k)6g@1g2n)=ay^#lwaxjf9acvrh50p33_m'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['116.203.193.111', '78.47.35.187', 'localhost']
+ALLOWED_HOSTS = ['116.203.193.111', '78.47.35.187', 'localhost',]
 
 
 # Application definition
@@ -51,6 +51,8 @@ EXTERNAL_APPS = [
     'import_export',
     'django_elasticsearch_dsl',  # Django ES integration
     'django_elasticsearch_dsl_drf',  # DRF ES integration
+    'whitenoise.runserver_nostatic',
+    'dynamic_raw_id',
 ]
 
 LOCAL_APPS = [
@@ -64,6 +66,7 @@ INSTALLED_APPS = DEFAULT_APPS + EXTERNAL_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -192,8 +195,11 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

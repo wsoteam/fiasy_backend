@@ -7,7 +7,6 @@ verify_ssl = true
 pycodestyle = "*"
 
 [packages]
-django = "*"
 djangorestframework = "*"
 pillow = "*"
 pep8 = "*"
@@ -31,10 +30,13 @@ scrypt = "*"
 django-admin-numeric-filter = "*"
 passlib = "*"
 djangorestframework-simplejwt = "*"
-django-elasticsearch-dsl-drf = "*"
 django-elasticsearch-dsl = "*"
+django-elasticsearch-dsl-drf = "*"
 django-modeltranslation = "*"
+django = "<=2.2.8"
 django-colorfield = "*"
+whitenoise = "*"
+django-dynamic-raw-id = "*"
 
 [requires]
 python_version = "3.7"

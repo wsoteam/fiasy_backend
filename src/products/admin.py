@@ -337,6 +337,8 @@ class ProductAdmin(
         ),
     )
 
+    raw_id_fields = ('category', 'brand',)
+
 
 class MeasurementUnitResource(resources.ModelResource):
     class Meta:

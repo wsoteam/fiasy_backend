@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from recipes.models import Recipe,ProductAmount
+from recipes.models import Recipe, ProductAmount
 
 from products.admin import InputFilter
 
@@ -9,6 +9,8 @@ from products.models import Product
 from django.db.models import Q
 
 from django.utils.translation import ugettext_lazy as _
+
+from dynamic_raw_id.admin import DynamicRawIDMixin
 
 
 class ProductFilter(InputFilter):
@@ -32,11 +34,13 @@ class ProductInlineAdmin(admin.TabularInline):
     extra = 1
 
 
-class RecipeAdmin(admin.ModelAdmin):
+class RecipeAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     list_display = ['name']
     list_filter = (ProductFilter,)
     search_fields = ('name', 'full_info', 'products__name',)
-    inlines = [ProductInlineAdmin]
+    dynamic_raw_id_fields = ('products',)
+
+
 
 
 admin.site.register(Recipe, RecipeAdmin)
