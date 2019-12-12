@@ -10,8 +10,6 @@ from django.db.models import Q
 
 from django.utils.translation import ugettext_lazy as _
 
-from dynamic_raw_id.admin import DynamicRawIDMixin
-
 
 class ProductFilter(InputFilter):
     parameter_name = 'product'
@@ -32,15 +30,14 @@ class ProductFilter(InputFilter):
 class ProductInlineAdmin(admin.TabularInline):
     model = ProductAmount
     extra = 1
+    raw_id_fields = ('product',)
 
 
 class RecipeAdmin(DynamicRawIDMixin, admin.ModelAdmin):
     list_display = ['name']
     list_filter = (ProductFilter,)
     search_fields = ('name', 'full_info', 'products__name',)
-    dynamic_raw_id_fields = ('products',)
-
-
+    inlines = [ProductInlineAdmin]
 
 
 admin.site.register(Recipe, RecipeAdmin)

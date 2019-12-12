@@ -23,8 +23,61 @@ class Recipe(models.Model):
         through='ProductAmount',
         related_name='products'
     )
-    premium = models.BooleanField(_('Premium'), default=False)
     date = models.DateField(_('Date'), auto_now=True)
+
+    kilojoules = models.FloatField(
+        _('Kilojoules'),
+        default=-1.0
+    )
+    calories = models.FloatField(
+        _('Calories'),
+        default=-1.0
+    )
+    proteins = models.FloatField(
+        _('Proteins'),
+        default=-1.0
+    )
+    carbohydrates = models.FloatField(
+        _('Carbohydrates'),
+        default=-1.0
+    )
+    sugar = models.FloatField(
+        _('Sugar'),
+        default=-1.0
+    )
+    fats = models.FloatField(
+        _('Fats'),
+        default=-1.0
+    )
+    saturated_fats = models.FloatField(
+        _('Saturated fats'),
+        default=-1.0
+    )
+    monounsaturated_fats = models.FloatField(
+        _('Monosaturated fats'),
+        default=-1.0
+    )
+    polyunsaturated_fats = models.FloatField(
+        _('Polysaturated fats'),
+        default=-1.0
+    )
+    cholesterol = models.FloatField(
+        _('Cholesterol'),
+        default=-1.0
+    )
+    cellulose = models.FloatField(
+        _('Cellulose'),
+        default=-1.0
+    )
+    sodium = models.FloatField(
+        _('Sodium'),
+        default=-1.0
+    )
+    pottasium = models.FloatField(
+        _('Pottasium'),
+        default=-1.0
+    )
+    premium = models.BooleanField(_('Premium'), default=False)
     is_moderated = models.BooleanField(_('Is moderated'), default=False)
 
     class Meta:
@@ -97,5 +150,5 @@ class ProductAmount(models.Model):
     )
     amount = models.FloatField(_('Amount'), default=0)
 
-    # class Meta:
-    #     db_table = "recipes_productamount_products"
+    def __str__(self):
+        return self.product.name
