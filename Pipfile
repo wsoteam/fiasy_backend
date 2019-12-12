@@ -37,6 +37,7 @@ django = "<=2.2.8"
 django-colorfield = "*"
 whitenoise = "*"
 django-dynamic-raw-id = "*"
+django-multiselectfield = "*"
 
 [requires]
 python_version = "3.7"
