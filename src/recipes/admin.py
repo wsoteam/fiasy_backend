@@ -33,7 +33,7 @@ class ProductInlineAdmin(admin.TabularInline):
     raw_id_fields = ('product',)
 
 
-class RecipeAdmin(DynamicRawIDMixin, admin.ModelAdmin):
+class RecipeAdmin(admin.ModelAdmin):
     list_display = ['name']
     list_filter = (ProductFilter,)
     search_fields = ('name', 'full_info', 'products__name',)
