@@ -19,6 +19,7 @@ from api.views.articles import ArticleViewset
 from api.views.recipes import RecipeViewset
 from api.views.user_profile import UserViewset, UserProfileViewset
 from api.views.sendsay import SendsaySetMemberView
+from api.views.feedbacks import FeedbackView
 
 from rest_framework_simplejwt import views as jwt_views
 
@@ -53,7 +54,8 @@ urlpatterns = [
     path('api/v1/es/', include(es_router.urls)),
     path('api/v1/pt/', include(pt_router.urls)),
     path('api/v1/', include(router.urls)),
-    path('api/v1/sendsay/set', SendsaySetMemberView.as_view()),
+    path('api/v1/feedbacks/set/', FeedbackView.as_view()),
+    path('api/v1/sendsay/set/', SendsaySetMemberView.as_view()),
     path('api/docs/', include('api.swagger_urls')),
     path('api/auth/token/', jwt_views.TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view()),
