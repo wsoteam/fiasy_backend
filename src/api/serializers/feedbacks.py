@@ -1,6 +1,12 @@
 from rest_framework import serializers
 
-from feedbacks.models import Feedback
+from feedbacks.models import Feedback, FeedbackType
+
+
+class FeedbackTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeedbackType
+        fields = '__all__'
 
 
 class FeedbackSerializer(serializers.ModelSerializer):

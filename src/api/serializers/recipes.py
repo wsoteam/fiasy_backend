@@ -25,8 +25,7 @@ class RecipeProductSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
             representation = super().to_representation(instance)
             representation['amount'] = ProductAmountSerializer(
-                instance.amount.all(),
-                many=True
+                instance.amount
             ).data
             return representation
 
