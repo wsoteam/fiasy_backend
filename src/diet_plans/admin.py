@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from diet_plans.models import DietPlan, DayInPlan
+from diet_plans.models import DietPlan, DayInPlan, DietPlanCategory
 from recipes.models import Recipe
 
 
@@ -15,3 +15,4 @@ class DietPlanAdmin(admin.ModelAdmin):
 
 
 admin.site.register(DietPlan, DietPlanAdmin)
+admin.site.register(DietPlanCategory)

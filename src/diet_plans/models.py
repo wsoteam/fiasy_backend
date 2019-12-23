@@ -6,7 +6,10 @@ from products.models import Category
 
 
 class DietPlanCategory(Category):
-    pass
+
+    class Meta:
+        verbose_name = _('Diet plan category')
+        verbose_name_plural = _('Diet plan categories')
 
 
 class DietPlan(models.Model):
@@ -65,4 +68,3 @@ class DayInPlan(models.Model):
 
     def __str__(self):
         return str(self.day)
-    
