@@ -60,6 +60,8 @@ LOCAL_APPS = [
     'articles',
     'recipes',
     'users',
+    'feedbacks',
+    'diet_plans',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + EXTERNAL_APPS + LOCAL_APPS
@@ -194,7 +196,6 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale')]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
