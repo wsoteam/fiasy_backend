@@ -2,14 +2,26 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from recipes.models import Recipe
-from products.models import Category
 
 
-class DietPlanCategory(Category):
+class DietPlanCategory(models.Model):
+
+    name = models.CharField(_('Name'), max_length=80, null=True, unique=True)
+    parent = models.ForeignKey(
+        'self',
+        verbose_name=_("Parent"),
+        blank=True,
+        null=True,
+        related_name='children',
+        on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = _('Diet plan category')
         verbose_name_plural = _('Diet plan categories')
+
+    def __str__(self):
+        return self.name
 
 
 class DietPlan(models.Model):
