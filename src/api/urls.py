@@ -20,6 +20,7 @@ from api.views.recipes import RecipeViewset
 from api.views.user_profile import UserViewset, UserProfileViewset
 from api.views.sendsay import SendsaySetMemberView
 from api.views.feedbacks import FeedbackView, FeedbackTypeView
+from api.views.diet_plans import DietPlanViewset
 
 from rest_framework_simplejwt import views as jwt_views
 
@@ -45,6 +46,7 @@ router.register('search', GetProductViewset, base_name='search')
 router.register('products', ProductViewset, base_name='producs')
 router.register('articles', ArticleViewset)
 router.register('recipes', RecipeViewset)
+router.register('diet_plans', DietPlanViewset)
 router.register('users', UserViewset)
 router.register('user_profiles', UserProfileViewset)
 

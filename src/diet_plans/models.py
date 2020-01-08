@@ -51,7 +51,7 @@ class DietPlan(models.Model):
         verbose_name=_("Recipe"),
         blank=True,
         through='DayInPlan',
-        related_name='recipes'
+        related_name='diet_plans'
     )
 
     def __str__(self):
