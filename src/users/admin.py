@@ -8,25 +8,19 @@ from users.models import UserProfile
 
 class UserProfileAdmin(admin.StackedInline):
     model = UserProfile
-    # list_display = [
-    #     'id'
-    #     'image',
-    #     'age',
-    #     'height',
-    #     'weight',
-    #     'max_carbo',
-    #     'max_fats',
-    #     'max_calories',
-    #     'max_proteins',
-    #     'water_count'
-    # ]
+    can_delete = False
 
 
-class UserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
     inlines = [
-        UserProfileAdmin
+        UserProfileAdmin,
     ]
+
+    def get_inline_instances(self, request, obj=None):
+        if not obj:
+            return list()
+        return super(CustomUserAdmin, self).get_inline_instances(request, obj)
 
 
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User, CustomUserAdmin)

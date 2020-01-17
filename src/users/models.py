@@ -36,7 +36,8 @@ class UserProfile(models.Model):
         User,
         related_name='profile',
         on_delete=models.CASCADE,
-        unique=True
+        unique=True,
+        null=True
     )
     uid = models.CharField(max_length=28, null=True, blank=True)
     image = models.ImageField(
@@ -79,9 +80,8 @@ class UserProfile(models.Model):
         import datetime
         self.age = int((datetime.date.today() - self.birthday).days / 365.25)
 
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-    instance.profile.save()
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserProfile.objects.create(user=instance)
+        instance.profile.save()
