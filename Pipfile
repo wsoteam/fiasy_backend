@@ -7,7 +7,7 @@ verify_ssl = true
 pycodestyle = "*"
 
 [packages]
-djangorestframework = "*"
+djangorestframework = "<=3.10.3"
 pillow = "*"
 pep8 = "*"
 pylint = "*"
@@ -30,7 +30,7 @@ scrypt = "*"
 django-admin-numeric-filter = "*"
 passlib = "*"
 djangorestframework-simplejwt = "*"
-django-elasticsearch-dsl = "*"
+django-elasticsearch-dsl = "<=7.1.0"
 django-elasticsearch-dsl-drf = "*"
 django-modeltranslation = "*"
 django = "<=2.2.8"
@@ -38,6 +38,7 @@ django-colorfield = "*"
 whitenoise = "*"
 django-dynamic-raw-id = "*"
 django-multiselectfield = "*"
+drf-firebase3-auth = "*"
 
 [requires]
 python_version = "3.7"
