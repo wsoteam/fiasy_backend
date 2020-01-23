@@ -53,6 +53,7 @@ EXTERNAL_APPS = [
     'django_elasticsearch_dsl_drf',  # DRF ES integration
     'whitenoise.runserver_nostatic',
     'dynamic_raw_id',
+    'drf_firebase3_auth',
 ]
 
 LOCAL_APPS = [
@@ -84,9 +85,27 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'drf_firebase3_auth.authentication.FirebaseAuthentication',
     ],
     'PAGE_SIZE': 100
 }
+
+DRF_FIREBASE_AUTH = {
+    # path to JSON file with firebase secrets
+    'FIREBASE_SERVICE_ACCOUNT_KEY': 'serviceAccountKey.json',
+    # allow creation of new local user in db
+    'FIREBASE_CREATE_LOCAL_USER': True,
+    # attempt to split firebase user.display_name and set local user
+    # first_name and last_name
+    'FIREBASE_ATTEMPT_CREATE_WITH_DISPLAY_NAME': True,
+    # commonly JWT or Bearer (e.g. JWT <token>)
+    'FIREBASE_AUTH_HEADER_PREFIX': 'JWT',
+    # verify that JWT has not been revoked
+    'FIREBASE_CHECK_JWT_REVOKED': True,
+    # require that firebase user.email_verified is True
+    'FIREBASE_AUTH_EMAIL_VERIFICATION': False
+}
+
 
 # ELASTICSEARCH_DSL = {
 #     'default': {
