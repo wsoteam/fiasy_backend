@@ -1,5 +1,6 @@
 from rest_framework import views
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
 from feedbacks.models import FeedbackType
 
@@ -11,6 +12,7 @@ from api.serializers.feedbacks import (
 
 class FeedbackTypeView(views.APIView):
     serializer_class = FeedbackTypeSerializer()
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         queryset = FeedbackType.objects.all()
@@ -20,6 +22,7 @@ class FeedbackTypeView(views.APIView):
 
 class FeedbackView(views.APIView):
     serializer_class = FeedbackSerializer
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request):
         serializer = FeedbackSerializer(data=request.data)

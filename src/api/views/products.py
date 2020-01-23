@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import filters
+from rest_framework.permissions import IsAuthenticated
 
 from products.models import Product
 from api.serializers.products import (
@@ -14,8 +15,6 @@ from api.serializers.products import (
     EsGetProductSerializer,
     PtGetProductSerializer
 )
-
-from rest_framework.permissions import IsAuthenticated
 
 from elasticsearch_dsl import MultiSearch, Search
 
@@ -222,7 +221,6 @@ class EsGetProductViewset(GetProductViewset):
     serializer_class = EsGetProductSerializer
     search_fields = (
         'name_es',
-        # 'get_search_field'
     )
 
     suggester_fields = {
@@ -245,7 +243,7 @@ class ProductViewset(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
     filter_backends = (CustomSearchFilter,)
     search_fields = ['name', 'brand__name']
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
 
 class EnProductViewset(ProductViewset):

@@ -21,6 +21,7 @@ class UserProfileViewset(mixins.CreateModelMixin,
 
     queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class UserViewset(mixins.CreateModelMixin,
@@ -31,6 +32,4 @@ class UserViewset(mixins.CreateModelMixin,
 
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    # filter_backends = (CustomSearchFilter,)
-    # search_fields = ['name']
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
