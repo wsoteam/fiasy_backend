@@ -15,6 +15,7 @@ from api.views.products import (
     EsGetProductViewset
 )
 
+from api.views.user_profile import AddFavProductView, DeleteFavProductView
 from api.views.articles import ArticleViewset
 from api.views.recipes import RecipeViewset
 from api.views.user_profile import UserViewset, UserProfileViewset
@@ -59,6 +60,8 @@ urlpatterns = [
     path('api/v1/feedbacks/feedback_types', FeedbackTypeView.as_view()),
     path('api/v1/feedbacks/set/', FeedbackView.as_view()),
     path('api/v1/sendsay/set/', SendsaySetMemberView.as_view()),
+    path('api/v1/add_favorite_product/', AddFavProductView.as_view()),
+    path('api/v1/delete_favorite_product/', DeleteFavProductView.as_view()),
     path('api/docs/', include('api.swagger_urls')),
     path('api/auth/token/', jwt_views.TokenObtainPairView.as_view()),
     path('api/auth/token/refresh/', jwt_views.TokenRefreshView.as_view()),

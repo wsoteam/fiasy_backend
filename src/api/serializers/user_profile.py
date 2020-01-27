@@ -7,7 +7,25 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = '__all__'
+        fields = [
+            "id",
+            "uid",
+            "image",
+            "gender",
+            "activity",
+            "goals",
+            "age",
+            "height",
+            "weight",
+            "birth_date",
+            "max_carbo",
+            "max_fats",
+            "max_calories",
+            "max_proteins",
+            "water_count",
+            "user",
+            "favorite_products"
+        ]
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,5 +40,15 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "email",
-            'profile',
+            "profile",
         ]
+
+
+class AddFavProductSerializer(serializers.Serializer):
+
+    favorited_by = serializers.IntegerField(min_value=1)
+    product = serializers.IntegerField(min_value=1)
+
+
+class DeleteFavProductSerializer(AddFavProductSerializer):
+    pass

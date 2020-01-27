@@ -2,6 +2,8 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
+from users.models import UserProfile
+
 
 class Category(models.Model):
     name = models.CharField(_('Name'), max_length=80, null=True, unique=True)
@@ -117,6 +119,11 @@ class Product(models.Model):
     pottasium = models.FloatField(
         _('Pottasium'),
         default=-1.0
+    )
+    favorited_by = models.ManyToManyField(
+        UserProfile,
+        related_name='favorite_products',
+        blank=True
     )
 
     def get_search_field(self):
