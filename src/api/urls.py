@@ -22,6 +22,7 @@ from api.views.user_profile import UserViewset, UserProfileViewset
 from api.views.sendsay import SendsaySetMemberView
 from api.views.feedbacks import FeedbackView, FeedbackTypeView
 from api.views.diet_plans import DietPlanViewset
+from api.views.meals import MealsViewset
 
 from rest_framework_simplejwt import views as jwt_views
 
@@ -50,6 +51,7 @@ router.register('recipes', RecipeViewset)
 router.register('diet_plans', DietPlanViewset)
 router.register('users', UserViewset)
 router.register('user_profiles', UserProfileViewset)
+router.register('meals', MealsViewset)
 
 urlpatterns = [
     path('api/v1/en/', include(en_router.urls)),
