@@ -12,6 +12,7 @@ class UserProfileAdmin(admin.StackedInline):
 
 
 class CustomUserAdmin(UserAdmin):
+    list_display = ['username', 'id']
     inlines = [
         UserProfileAdmin,
     ]
