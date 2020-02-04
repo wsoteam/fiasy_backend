@@ -19,3 +19,4 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='meals', to=settings.AUTH_USER_MODEL),
         ),
     ]
+
