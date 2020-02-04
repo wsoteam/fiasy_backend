@@ -7,7 +7,7 @@ from products.models import Product
 MEAL_CHOICES = (
     ('breakfast', _('Breakfast')),
     ('lunch', _('Lunch')),
-    ('shack', _('Snack')),
+    ('snack', _('Snack')),
     ('dinner', _('Dinner')),
 )
 
@@ -22,8 +22,6 @@ class Meal(models.Model):
     )
     user = models.ForeignKey(
         User,
-        blank=True,
-        null=True,
         related_name='meals',
         on_delete=models.CASCADE
     )
