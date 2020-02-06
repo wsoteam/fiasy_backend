@@ -3,7 +3,7 @@ from rest_framework import serializers
 from users.models import User, UserProfile
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = UserProfile
@@ -28,7 +28,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         ]
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     profile = UserProfileSerializer(read_only=True)
 
@@ -41,6 +41,8 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "email",
             "profile",
+            "meals",
+            "water_drinking",
         ]
 
 
