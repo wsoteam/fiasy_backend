@@ -16,7 +16,7 @@ from api.views.products import (
 )
 
 from api.views.user_profile import AddFavProductView, DeleteFavProductView
-from api.views.articles import ArticleViewset
+from api.views.articles import ArticleViewset, ArticleSeriesViewset
 from api.views.recipes import RecipeViewset
 from api.views.user_profile import UserViewset, UserProfileViewset
 from api.views.sendsay import SendsaySetMemberView
@@ -48,6 +48,7 @@ router = routers.DefaultRouter()
 router.register('search', GetProductViewset, base_name='search')
 router.register('products', ProductViewset, base_name='producs')
 router.register('articles', ArticleViewset)
+router.register('articles/series', ArticleSeriesViewset)
 router.register('recipes', RecipeViewset)
 router.register('diet_plans', DietPlanViewset)
 router.register('users', UserViewset)

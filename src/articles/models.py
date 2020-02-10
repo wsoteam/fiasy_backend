@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -35,6 +37,11 @@ class Author(models.Model):
 
 class ArticleSeries(models.Model):
     name = models.CharField(_("Name"), max_length=80, null=True, unique=True)
+    users = models.ManyToManyField(
+        User,
+        related_name='article_series',
+        blank=True,
+    )
 
     def __str__(self):
         return self.name

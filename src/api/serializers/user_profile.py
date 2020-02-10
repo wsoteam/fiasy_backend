@@ -24,7 +24,7 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
             "max_proteins",
             "water_count",
             "user",
-            "favorite_products"
+            "favorite_products",
         ]
 
 
@@ -43,6 +43,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "profile",
             "meals",
             "water_drinking",
+            "article_series"
         ]
 
 

@@ -12,7 +12,15 @@ class AuthorSerializer(serializers.ModelSerializer):
 class ArticleSeriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ArticleSeries
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'users']
+
+    # def update(self, instance, validated_data):
+    #     if validated_data['users']:
+    #         users = validated_data.pop('users')
+    #         article_series = instance.update(**validated_data)
+    #     for user in users:
+    #         article_series.users.add(user)
+    #     return article_series
 
 
 class ArticleCategorySerializer(serializers.ModelSerializer):
