@@ -43,7 +43,8 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "profile",
             "meals",
             "water_drinking",
-            "article_series"
+            "article_series",
+            "diet_plans"
         ]
 
 

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from recipes.models import Recipe
+from django.contrib.auth.models import User
 
 
 class DietPlanCategory(models.Model):
@@ -52,6 +53,12 @@ class DietPlan(models.Model):
         blank=True,
         through='DayInPlan',
         related_name='diet_plans'
+    )
+
+    users = models.ManyToManyField(
+        User,
+        related_name='diet_plans',
+        blank=True,
     )
 
     def __str__(self):
