@@ -13,7 +13,7 @@ class DietPlanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DietPlan
-        fields = ('__all__')
+        fields = '__all__'
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
