@@ -2,7 +2,7 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
-from users.models import UserProfile
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -121,7 +121,7 @@ class Product(models.Model):
         default=-1.0
     )
     favorited_by = models.ManyToManyField(
-        UserProfile,
+        User,
         related_name='favorite_products',
         blank=True
     )

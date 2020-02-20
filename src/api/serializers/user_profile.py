@@ -24,7 +24,6 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
             "max_proteins",
             "water_count",
             "user",
-            "favorite_products",
         ]
 
 
@@ -45,15 +44,17 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "water_drinking",
             "article_series",
             "diet_plans",
-            "body_measurements"
+            "body_measurements",
+            "intermittent_fasting",
+            "favorite_products"
         ]
 
 
-class AddFavProductSerializer(serializers.Serializer):
+# class AddFavProductSerializer(serializers.Serializer):
 
-    favorited_by = serializers.IntegerField(min_value=1)
-    product = serializers.IntegerField(min_value=1)
+#     favorited_by = serializers.IntegerField(min_value=1)
+#     product = serializers.IntegerField(min_value=1)
 
 
-class DeleteFavProductSerializer(AddFavProductSerializer):
-    pass
+# class DeleteFavProductSerializer(AddFavProductSerializer):
+#     pass
