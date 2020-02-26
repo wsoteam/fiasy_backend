@@ -26,6 +26,11 @@ from api.views.meals import MealsViewset
 from api.views.water import WaterViewset
 from api.views.body_measurements import BodyMeasurementViewset
 from api.views.intermittent_fasting import FastingViewset
+from api.views.activities import (
+    ActivityViewset,
+    CustomUserActivityViewset,
+    ActivityTimeViewset
+)
 
 from rest_framework_simplejwt import views as jwt_views
 
@@ -59,6 +64,9 @@ router.register('meals', MealsViewset)
 router.register('water', WaterViewset)
 router.register('body_measurements', BodyMeasurementViewset)
 router.register('intermittent_fasting', FastingViewset)
+# router.register('activities', ActivityViewset)
+router.register('custom_activities', CustomUserActivityViewset)
+router.register('activities_time', ActivityTimeViewset)
 
 urlpatterns = [
     path('api/v1/en/', include(en_router.urls)),

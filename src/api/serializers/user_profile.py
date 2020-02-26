@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
 from users.models import User, UserProfile
+from api.serializers.activities import ActivitySerializer
 
 
 class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
@@ -30,6 +31,7 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     profile = UserProfileSerializer(read_only=True)
+    activities = ActivitySerializer(many=True)
 
     class Meta:
         model = User
@@ -46,7 +48,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             "diet_plans",
             "body_measurements",
             "intermittent_fasting",
-            "favorite_products"
+            "favorite_products",
+            "activities",
+            # "activities_time",
+            "custom_activities"
         ]
 
 
