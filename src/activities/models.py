@@ -8,9 +8,22 @@ from django.contrib.auth.models import User
 
 from import_export import resources
 
+from django.core.validators import FileExtensionValidator
+
 
 class Activity(models.Model):
-    icon = models.ImageField(_('Icon'))
+    # icon = models.ImageField(_('Icon'), null=True, blank=True)
+    icon = models.FileField(
+        _('Icon'),
+        upload_to='activities',
+        validators=[
+            FileExtensionValidator(
+                ['jpeg', 'jpg', 'png', 'svg']
+            )
+        ],
+        null=True,
+        blank=True
+    )
     name = models.CharField(_('Activity name'), max_length=80)
     сonsumption = models.FloatField(
         _('Consumption'),

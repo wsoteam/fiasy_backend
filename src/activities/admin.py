@@ -9,10 +9,10 @@ from import_export.admin import ImportExportModelAdmin, ExportActionMixin
 class ActivityResource(resources.ModelResource):
     class Meta:
         model = Activity
-        import_id_fields = ['id']
+        import_id_fields = ['name']
 
         fields = (
-            'id',
+            # 'id',
             'name',
             'сonsumption'
         )
