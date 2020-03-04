@@ -1,6 +1,11 @@
 from rest_framework import serializers
 
-from activities.models import Activity, CustomUserActivity, ActivityTime
+from activities.models import (
+    Activity,
+    CustomUserActivity,
+    ActivityTime,
+    CustomActivityTime
+)
 
 
 class ActivityTimeSerializer(serializers.ModelSerializer):
@@ -16,7 +21,7 @@ class ActivitySerializer(serializers.ModelSerializer):
             'icon',
             'name',
             'сonsumption',
-            'activity_time'
+            # 'activity_time'
         ]
 
     # def to_representation(self, instance):
@@ -25,9 +30,28 @@ class ActivitySerializer(serializers.ModelSerializer):
     #         instance.activity_time.all(),
     #         many=True
     #     ).data
-    
+
+
+class CustomActivityTimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomActivityTime
+        fields = [
+            'activity_time',
+            'activity',
+            'timestamp'
+        ]
+
 
 class CustomUserActivitySerializer(serializers.ModelSerializer):
+
+    custom_activity_time = CustomActivityTimeSerializer(many=True)
+
     class Meta:
         model = CustomUserActivity
-        fields = '__all__'
+        fields = [
+            'id',
+            'name',
+            'сonsumption',
+            'user',
+            'custom_activity_time'
+        ]

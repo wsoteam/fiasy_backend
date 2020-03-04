@@ -54,6 +54,7 @@ class ActivityTime(models.Model):
         related_name='activity_time',
         on_delete=models.CASCADE
     )
+    timestamp = models.DateTimeField(auto_now_add=True)
 
 
 class CustomUserActivity(models.Model):
@@ -67,10 +68,23 @@ class CustomUserActivity(models.Model):
         related_name='custom_activities',
         on_delete=models.CASCADE
     )
-    activity_time_minutes = models.PositiveIntegerField(
-        _('Activity Time (Minutes)'),
-        default=0
-    )
+    # activity_time_minutes = models.PositiveIntegerField(
+    #     _('Activity Time (Minutes)'),
+    #     default=0
+    # )
 
     def __str__(self):
         return self.name
+
+
+class CustomActivityTime(models.Model):
+    activity_time = models.PositiveIntegerField(
+        _('Custom Activity Time (Minutes)')
+    )
+    activity = models.ForeignKey(
+        CustomUserActivity,
+        related_name='custom_activity_time',
+        on_delete=models.CASCADE
+    )
+    timestamp = models.DateTimeField(auto_now_add=True)
+    

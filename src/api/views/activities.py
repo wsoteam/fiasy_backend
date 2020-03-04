@@ -4,12 +4,14 @@ from rest_framework.permissions import IsAuthenticated
 from activities.models import (
     Activity,
     CustomUserActivity,
-    ActivityTime
+    ActivityTime,
+    CustomActivityTime
 )
 from api.serializers.activities import (
     ActivitySerializer,
     CustomUserActivitySerializer,
-    ActivityTimeSerializer
+    ActivityTimeSerializer,
+    CustomActivityTimeSerializer
 )
 
 
@@ -20,12 +22,30 @@ class ActivityViewset(viewsets.ReadOnlyModelViewSet):
 
 
 class CustomUserActivityViewset(viewsets.ModelViewSet):
-    queryset = CustomUserActivity.objects.all()
     serializer_class = CustomUserActivitySerializer
     permission_classes = (IsAuthenticated, )
 
+    def get_queryset(self):
+        user = self.request.user
+        return user.custom_activities.all()
+
 
 class ActivityTimeViewset(viewsets.ModelViewSet):
-    queryset = ActivityTime.objects.all()
     serializer_class = ActivityTimeSerializer
     permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = ActivityTime.objects.filter(user=user)
+        return queryset
+
+
+class CustomActivityTimeViewset(viewsets.ModelViewSet):
+    serializer_class = CustomActivityTimeSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        user = self.request.user
+        activities = user.custom_activities.all()
+        queryset = CustomActivityTime.objects.filter(activity__in=activities)
+        return queryset
