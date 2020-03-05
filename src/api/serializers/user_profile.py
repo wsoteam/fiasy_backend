@@ -36,9 +36,9 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     profile = UserProfileSerializer(read_only=True)
-    activities = ActivitySerializer(many=True)
-    custom_activities = CustomUserActivitySerializer(many=True)
-    activity_time = ActivityTimeSerializer(many=True)
+    activities = ActivitySerializer(many=True, read_only=True)
+    custom_activities = CustomUserActivitySerializer(many=True, read_only=True)
+    activity_time = ActivityTimeSerializer(many=True, read_only=True)
 
     class Meta:
         model = User

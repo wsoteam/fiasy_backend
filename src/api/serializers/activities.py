@@ -44,7 +44,7 @@ class CustomActivityTimeSerializer(serializers.ModelSerializer):
 
 class CustomUserActivitySerializer(serializers.ModelSerializer):
 
-    custom_activity_time = CustomActivityTimeSerializer(many=True)
+    custom_activity_time = CustomActivityTimeSerializer(many=True, read_only=True)
 
     class Meta:
         model = CustomUserActivity
