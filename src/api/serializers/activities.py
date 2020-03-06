@@ -18,6 +18,7 @@ class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
         fields = [
+            'id',
             'icon',
             'name',
             'сonsumption',
