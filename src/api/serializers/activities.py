@@ -37,6 +37,7 @@ class CustomActivityTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomActivityTime
         fields = [
+            'id',
             'activity_time',
             'activity',
             'timestamp'
