@@ -9,7 +9,7 @@ from api.serializers.activities import (
 )
 
 
-class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
+class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
@@ -33,7 +33,7 @@ class UserProfileSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
 
     profile = UserProfileSerializer(read_only=True)
     activities = ActivitySerializer(many=True, read_only=True)
@@ -62,11 +62,9 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 
-# class AddFavProductSerializer(serializers.Serializer):
-
-#     favorited_by = serializers.IntegerField(min_value=1)
-#     product = serializers.IntegerField(min_value=1)
+class AddFavProductSerializer(serializers.Serializer):
+    product = serializers.IntegerField(min_value=1)
 
 
-# class DeleteFavProductSerializer(AddFavProductSerializer):
-#     pass
+class DeleteFavProductSerializer(AddFavProductSerializer):
+    pass
