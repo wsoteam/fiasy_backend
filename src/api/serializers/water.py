@@ -8,6 +8,7 @@ class WaterSerializer(serializers.ModelSerializer):
     class Meta:
         model = WaterDrinking
         fields = [
+            'id',
             'amount',
             'timestamp'
         ]

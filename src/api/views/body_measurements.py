@@ -14,7 +14,6 @@ class BodyMeasurementViewset(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer_class()(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            print(serializer)
             user = self.request.user
             chest = request.data['chest']
             waist = request.data['waist']

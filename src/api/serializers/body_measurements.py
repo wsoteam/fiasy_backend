@@ -7,6 +7,7 @@ class BodyMeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = BodyMeasurement
         fields = [
+            'id',
             'weight',
             'chest',
             'waist',
