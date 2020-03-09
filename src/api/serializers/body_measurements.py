@@ -6,4 +6,12 @@ from body_measurements.models import BodyMeasurement
 class BodyMeasurementSerializer(serializers.ModelSerializer):
     class Meta:
         model = BodyMeasurement
-        fields = '__all__'
+        fields = [
+            'weight',
+            'chest',
+            'waist',
+            'hips',
+            'date'
+        ]
+
+
