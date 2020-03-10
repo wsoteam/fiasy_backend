@@ -1,3 +1,6 @@
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 
@@ -39,6 +42,22 @@ class ActivityTimeViewset(viewsets.ModelViewSet):
         queryset = ActivityTime.objects.filter(user=user)
         return queryset
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer_class()(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = self.request.user
+            minutes = request.data['minutes']
+            activity = Activity.objects.get(id=request.data['activity'])
+            activity_time = ActivityTime(
+                user=user,
+                minutes=minutes,
+                activity=activity
+            )
+            activity_time.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 class CustomActivityTimeViewset(viewsets.ModelViewSet):
     serializer_class = CustomActivityTimeSerializer
@@ -49,3 +68,4 @@ class CustomActivityTimeViewset(viewsets.ModelViewSet):
         activities = user.custom_activities.all()
         queryset = CustomActivityTime.objects.filter(activity__in=activities)
         return queryset
+           

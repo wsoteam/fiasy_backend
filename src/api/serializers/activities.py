@@ -11,7 +11,11 @@ from activities.models import (
 class ActivityTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ActivityTime
-        fields = '__all__'
+        fields = [
+            'id',
+            'minutes',
+            'activity'
+        ]
 
 
 class ActivitySerializer(serializers.ModelSerializer):
