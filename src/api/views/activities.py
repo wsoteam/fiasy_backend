@@ -54,7 +54,10 @@ class ActivityTimeViewset(viewsets.ModelViewSet):
                 activity=activity
             )
             activity_time.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                ActivityTimeSerializer(activity_time).data,
+                status=status.HTTP_201_CREATED
+            )
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 

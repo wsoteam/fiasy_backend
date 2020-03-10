@@ -24,7 +24,10 @@ class FastingViewset(viewsets.ModelViewSet):
                 end=end
             )
             intermittent_fasting.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(
+                FastingSerializer(intermittent_fasting).data,
+                status=status.HTTP_201_CREATED
+            )
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
