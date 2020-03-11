@@ -26,15 +26,8 @@ class ActivitySerializer(serializers.ModelSerializer):
             'icon',
             'name',
             'сonsumption',
-            # 'activity_time'
         ]
 
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     representation['activity_time'] = ActivityTimeSerializer(
-    #         instance.activity_time.all(),
-    #         many=True
-    #     ).data
 
 
 class CustomActivityTimeSerializer(serializers.ModelSerializer):
@@ -58,6 +51,5 @@ class CustomUserActivitySerializer(serializers.ModelSerializer):
             'id',
             'name',
             'сonsumption',
-            'user',
             'custom_activity_time'
         ]

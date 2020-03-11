@@ -32,6 +32,25 @@ class CustomUserActivityViewset(viewsets.ModelViewSet):
         user = self.request.user
         return user.custom_activities.all()
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer_class()(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            user = self.request.user
+            name = request.data['name']
+            сonsumption = request.data['сonsumption']
+            custom_activity = CustomUserActivity(
+                user=user,
+                name=name,
+                сonsumption=сonsumption
+            )
+            custom_activity.save()
+            return Response(
+                CustomUserActivitySerializer(custom_activity).data,
+                status=status.HTTP_201_CREATED
+            )
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
 
 class ActivityTimeViewset(viewsets.ModelViewSet):
     serializer_class = ActivityTimeSerializer
