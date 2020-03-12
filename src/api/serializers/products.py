@@ -182,3 +182,10 @@ class EsProductSerializer(ProductSerializer):
         representation['name'] = instance.name_es
         representation['full_info'] = instance.full_info_es
         return representation
+
+
+class SimpleProductSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ['id', 'name']

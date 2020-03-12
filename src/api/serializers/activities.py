@@ -29,7 +29,6 @@ class ActivitySerializer(serializers.ModelSerializer):
         ]
 
 
-
 class CustomActivityTimeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomActivityTime

@@ -22,7 +22,7 @@ from api.views.user_profile import UserViewset, UserProfileViewset
 from api.views.sendsay import SendsaySetMemberView
 from api.views.feedbacks import FeedbackView, FeedbackTypeView
 from api.views.diet_plans import DietPlanViewset
-from api.views.meals import MealsViewset
+from api.views.meals import MealsViewset, MealsProductViewset
 from api.views.water import WaterViewset
 from api.views.body_measurements import BodyMeasurementViewset
 from api.views.intermittent_fasting import FastingViewset
@@ -61,11 +61,16 @@ router.register('recipes', RecipeViewset)
 router.register('diet_plans', DietPlanViewset)
 router.register('users', UserViewset)
 router.register('user_profiles', UserProfileViewset)
-router.register('meals', MealsViewset)
+router.register('meals', MealsViewset, base_name='meals')
+router.register(
+    'meals_products',
+    MealsProductViewset,
+    base_name='meals_products'
+    )
 router.register('water', WaterViewset)
 router.register('body_measurements', BodyMeasurementViewset)
 router.register('intermittent_fasting', FastingViewset)
-router.register('activities',ActivityViewset)
+router.register('activities', ActivityViewset)
 router.register(
     'custom_activities',
     CustomUserActivityViewset,
@@ -79,7 +84,7 @@ router.register(
 router.register(
     'custom_activities_time',
     CustomActivityTimeViewset,
-    base_name='custom_activities_time' 
+    base_name='custom_activities_time'
 )
 
 urlpatterns = [

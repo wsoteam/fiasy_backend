@@ -25,6 +25,10 @@ class Meal(models.Model):
         related_name='meals',
         on_delete=models.CASCADE
     )
+    date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.meal + ' ' + str(self.date)
 
 
 class ProductAmount(models.Model):
