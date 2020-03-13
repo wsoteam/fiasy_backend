@@ -59,8 +59,8 @@ router.register('articles', ArticleViewset)
 router.register('articles/series', ArticleSeriesViewset)
 router.register('recipes', RecipeViewset)
 router.register('diet_plans', DietPlanViewset)
-router.register('users', UserViewset)
-router.register('user_profiles', UserProfileViewset)
+router.register('users', UserViewset, base_name='users')
+router.register('user_profiles', UserProfileViewset, base_name='user_profiles')
 router.register('meals', MealsViewset, base_name='meals')
 router.register(
     'meals_products',

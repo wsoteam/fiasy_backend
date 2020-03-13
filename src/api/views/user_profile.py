@@ -3,71 +3,87 @@ from rest_framework import filters
 from rest_framework.response import Response
 
 from users.models import User, UserProfile
+from products.models import Product
+from rest_framework import status
 
 from rest_framework import generics, mixins, views
 
 from api.serializers.user_profile import (
     UserSerializer,
     UserProfileSerializer,
+    DeleteFavProductSerializer,
+    AddFavProductSerializer
 )
 
 
 from rest_framework.permissions import IsAuthenticated
 
 
-class UserProfileViewset(mixins.CreateModelMixin,
-                        mixins.RetrieveModelMixin,
-                        mixins.UpdateModelMixin,
-                        mixins.DestroyModelMixin,
-                        viewsets.GenericViewSet):
+# class UserProfileViewset(mixins.CreateModelMixin,
+#                         mixins.RetrieveModelMixin,
+#                         mixins.UpdateModelMixin,
+#                         mixins.DestroyModelMixin,
+#                         viewsets.GenericViewSet):
+class UserProfileViewset(viewsets.ModelViewSet):
 
-    queryset = UserProfile.objects.all()
+    # queryset = UserProfile.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = (IsAuthenticated,)
 
+    def get_queryset(self):
+        user = self.request.user
+        queryset = UserProfile.objects.filter(user=user)
+        return queryset
 
-class UserViewset(mixins.CreateModelMixin,
-                mixins.RetrieveModelMixin,
-                mixins.UpdateModelMixin,
-                mixins.DestroyModelMixin,
-                viewsets.GenericViewSet):
 
-    queryset = User.objects.all()
+# class UserViewset(mixins.CreateModelMixin,
+#                 mixins.RetrieveModelMixin,
+#                 mixins.UpdateModelMixin,
+#                 mixins.DestroyModelMixin,
+#                 viewsets.GenericViewSet):
+class UserViewset(viewsets.ModelViewSet):
+
+    # queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (IsAuthenticated,)
 
-
-# class DeleteFavProductView(views.APIView):
-#     serializer_class = DeleteFavProductSerializer
-
-#     def post(self, request):
-#         serializer = DeleteFavProductSerializer(data=request.data)
-#         if serializer.is_valid():
-#             favorited_by = serializer.data.get('favorited_by')
-#             product = serializer.data.get('product')
-#             user = User.objects.get(id=favorited_by)
-#             r = user.profile.favorite_products.remove(product)
-#             print(favorited_by, product, user)
-#             return Response(
-#                 {'Product was deleted from ' + user.username + ' favorites'}
-#             )
-#         else:
-#             return Response({'Not Created'})
+    def get_queryset(self):
+        user = self.request.user
+        queryset = User.objects.filter(id=user.id)
+        return queryset
 
 
-# class AddFavProductView(views.APIView):
-#     serializer_class = AddFavProductSerializer
+class DeleteFavProductView(views.APIView):
+    serializer_class = DeleteFavProductSerializer
 
-#     def post(self, request):
-#         serializer = AddFavProductSerializer(data=request.data)
-#         if serializer.is_valid():
-#             favorited_by = serializer.data.get('favorited_by')
-#             product = serializer.data.get('product')
-#             user = User.objects.get(id=favorited_by)
-#             r = user.profile.favorite_products.add(product)
-#             print(favorited_by, product, user)
-#             return Response(
-#                 {'Product was added to ' + user.username + ' favorites'}
-#             )
-#         else:
-#             return Response({'Not Created'})
+    def post(self, request):
+        serializer = DeleteFavProductSerializer(data=request.data)
+        if serializer.is_valid():
+            product = serializer.data.get('product')
+            user = self.request.user
+            user.favorite_products.remove(product)
+            product = Product.objects.get(id=product)
+            return Response(
+                {product.name + ' was deleted from ' + user.username + ' favorites'},
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class AddFavProductView(views.APIView):
+    serializer_class = AddFavProductSerializer
+
+    def post(self, request):
+        serializer = AddFavProductSerializer(data=request.data)
+        if serializer.is_valid():
+            product = serializer.data.get('product')
+            user = self.request.user
+            user.favorite_products.add(product)
+            product = Product.objects.get(id=product)
+            return Response(
+                {product.name + ' was added to ' + user.username + ' favorites'},
+                status=status.HTTP_200_OK
+            )
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
