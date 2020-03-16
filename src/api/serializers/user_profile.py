@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from products.models import Product
 from users.models import User, UserProfile
 from api.serializers.activities import (
     ActivitySerializer,
@@ -63,7 +64,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class AddFavProductSerializer(serializers.Serializer):
-    product = serializers.IntegerField(min_value=1)
+    products = Product.objects.all()
+    product = serializers.PrimaryKeyRelatedField(queryset=products)
 
 
 class DeleteFavProductSerializer(AddFavProductSerializer):

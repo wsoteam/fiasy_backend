@@ -64,7 +64,7 @@ class DeleteFavProductView(views.APIView):
             user.favorite_products.remove(product)
             product = Product.objects.get(id=product)
             return Response(
-                {product.name + ' was deleted from ' + user.username + ' favorites'},
+                {f'{product.name} was deleted from {user.username} favorites'},
                 status=status.HTTP_200_OK
             )
         else:
@@ -82,7 +82,7 @@ class AddFavProductView(views.APIView):
             user.favorite_products.add(product)
             product = Product.objects.get(id=product)
             return Response(
-                {product.name + ' was added to ' + user.username + ' favorites'},
+                {f'{product.name} was added to {user.username} favorites'},
                 status=status.HTTP_200_OK
             )
         else:
