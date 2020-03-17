@@ -59,14 +59,20 @@ class DeleteFavProductView(views.APIView):
     def post(self, request):
         serializer = DeleteFavProductSerializer(data=request.data)
         if serializer.is_valid():
-            product = serializer.data.get('product')
+            product_id = serializer.data.get('product')
+            product = Product.objects.get(id=product_id)
             user = self.request.user
-            user.favorite_products.remove(product)
-            product = Product.objects.get(id=product)
-            return Response(
-                {f'{product.name} was deleted from {user.username} favorites'},
-                status=status.HTTP_200_OK
-            )
+            if product in user.favorite_products.all():
+                user.favorite_products.remove(product)
+                return Response(
+                    {f'{product.name} was deleted from {user.username} favorites'},
+                    status=status.HTTP_200_OK
+                )
+            else:
+                return Response(
+                    {f'{product.name} is not in {user.username} favorites'},
+                    status=status.HTTP_404_NOT_FOUND
+                )
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -77,13 +83,19 @@ class AddFavProductView(views.APIView):
     def post(self, request):
         serializer = AddFavProductSerializer(data=request.data)
         if serializer.is_valid():
-            product = serializer.data.get('product')
+            product_id = serializer.data.get('product')
+            product = Product.objects.get(id=product_id)
             user = self.request.user
-            user.favorite_products.add(product)
-            product = Product.objects.get(id=product)
-            return Response(
-                {f'{product.name} was added to {user.username} favorites'},
-                status=status.HTTP_200_OK
-            )
+            if product in user.favorite_products.all():
+                return Response(
+                    {f'{product.name} already in {user.username} favorites'},
+                    status=status.HTTP_409_CONFLICT
+                )
+            else:
+                user.favorite_products.add(product)
+                return Response(
+                    {f'{product.name} was added to {user.username} favorites'},
+                    status=status.HTTP_200_OK
+                )
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
